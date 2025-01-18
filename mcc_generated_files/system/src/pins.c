@@ -64,6 +64,7 @@ void PIN_MANAGER_Initialize(void)
     WPUA = 0x0;
     WPUB = 0x0;
     WPUC = 0x0;
+    WPUCbits.WPUC2=1;
   
     /**
     ODx registers
@@ -88,9 +89,9 @@ void PIN_MANAGER_Initialize(void)
     /**
     PPS registers
     */
-    INTPPS = 0x12; //RC2->INTERRUPT MANAGER:INT;
     SSP1DATPPS = 0xE; //RB6->MSSP1:SDI1;
     SSP1SSPPS = 0x16; //RC6->MSSP1:SS1;
+    INTPPS = 0x12; //RC2->INTERRUPT MANAGER:INT;
     RB7PPS = 0x08;  //RB7->MSSP1:SDO1;
     SSP1CLKPPS = 0xC;  //RB4->MSSP1:SCK1;
     RB4PPS = 0x07;  //RB4->MSSP1:SCK1;

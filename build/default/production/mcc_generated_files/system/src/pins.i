@@ -6244,6 +6244,7 @@ void PIN_MANAGER_Initialize(void)
     WPUA = 0x0;
     WPUB = 0x0;
     WPUC = 0x0;
+    WPUCbits.WPUC2=1;
 
 
 
@@ -6268,13 +6269,13 @@ void PIN_MANAGER_Initialize(void)
 
 
 
-    INTPPS = 0x12;
     SSP1DATPPS = 0xE;
     SSP1SSPPS = 0x16;
+    INTPPS = 0x12;
     RB7PPS = 0x08;
     SSP1CLKPPS = 0xC;
     RB4PPS = 0x07;
-# 105 "mcc_generated_files/system/src/pins.c"
+# 106 "mcc_generated_files/system/src/pins.c"
     IOCAP = 0x0;
     IOCAN = 0x0;
     IOCAF = 0x0;

@@ -8,7 +8,7 @@
  * @brief This file contains the API implementation for the Interrupt Manager driver.
  * 
  * @version Interrupt Manager Driver Version 2.0.6
-*/
+ */
 
 /*
 © [2025] Microchip Technology Inc. and its subsidiaries.
@@ -29,30 +29,22 @@
     TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
-*/
+ */
 
 #include "../../system/interrupt.h"
 #include "../../system/system.h"
 #include "../pins.h"
-#include "../../timer/tmr0.h"
 
 void (*INT_InterruptHandler)(void);
 
-void  INTERRUPT_Initialize (void)
-{
+void INTERRUPT_Initialize(void) {
     // Clear the interrupt flag
     // Set the external interrupt edge detect
-        EXT_INT_InterruptFlagClear();
+    EXT_INT_InterruptFlagClear();
     EXT_INT_fallingEdgeSet();
     // Set Default Interrupt Handler
     INT_SetInterruptHandler(INT_DefaultInterruptHandler);
     EXT_INT_InterruptEnable();
-
-//    EXT_INT_InterruptFlagClear();   
-//    EXT_INT_risingEdgeSet();
-//    // Set Default Interrupt Handler
-//    INT_SetInterruptHandler(INT_DefaultInterruptHandler);
-//    EXT_INT_InterruptEnable();
 
 }
 
@@ -80,33 +72,29 @@ void __interrupt() INTERRUPT_InterruptManager(void) {
     }
 }
 
-void INT_ISR(void)
-{
+void INT_ISR(void) {
     EXT_INT_InterruptFlagClear();
 
     // Callback function gets called everytime this ISR executes
-    INT_CallBack();    
+    INT_CallBack();
 }
 
-
-void INT_CallBack(void)
-{
+void INT_CallBack(void) {
     // Add your custom callback code here
-    if(INT_InterruptHandler)
-    {
+    if (INT_InterruptHandler) {
         INT_InterruptHandler();
     }
 }
 
-void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
+void INT_SetInterruptHandler(void (* InterruptHandler)(void)) {
     INT_InterruptHandler = InterruptHandler;
 }
 
-void INT_DefaultInterruptHandler(void){
+void INT_DefaultInterruptHandler(void) {
     // add your INT interrupt custom code
     // or set custom function using INT_SetInterruptHandler()
-        pushed = true;
+    pushed = true;
 }
 /**
  End of File
-*/
+ */

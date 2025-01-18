@@ -1,4 +1,4 @@
- /*
+/*
  * MAIN Generated Driver File
  * 
  * @file main.c
@@ -10,7 +10,7 @@
  * @version MAIN Driver Version 1.0.2
  *
  * @version Package Version: 3.1.2
-*/
+ */
 
 /*
 © [2025] Microchip Technology Inc. and its subsidiaries.
@@ -31,14 +31,12 @@
     TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
-*/
+ */
 #include "mcc_generated_files/system/system.h"
-#include "mcc_generated_files/timer/tmr0.h"
-#include"mcc_generated_files/system/interrupt.h"
+
 /*
     Main application
-*/
-
+ */
 bool led_state = false;
 void toggle_led(void);
 void spi_send_data(uint8_t data);
@@ -57,14 +55,10 @@ int main(void) {
 
     // Enable the Peripheral Interrupts 
     INTERRUPT_PeripheralInterruptEnable();
-    
-    TMR0_Initialize();
 
     // Disable the Peripheral Interrupts 
     //INTERRUPT_PeripheralInterruptDisable(); 
-    pushed= false;
-    timerOverflow=false;
-    
+
 
     while (1) {
         if (timerOverflow) {

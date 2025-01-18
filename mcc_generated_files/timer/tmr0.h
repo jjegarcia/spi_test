@@ -1,16 +1,16 @@
 /**
- * TMR0 Generated Driver API Header File
+ * TMR0 Generated Timer Driver API Header File
  * 
  * @file tmr0.h
  * 
- * @defgroup tmr08bit TMR0 in 8-Bit Mode
+ * @ingroup timerdriver
  * 
- * @brief This file contains API prototypes and other data types for the TMR0 driver.
+ * @brief This file contains API prototypes and other data types for the TMR0 Timer Driver.
  *
- * @version TMR0 Driver Version 3.0.0
+ * @version TMR0 Timer Driver Version 3.0.0
  *
  * @version Package Version 5.0.0
-*/
+ */
 /*
 © [2025] Microchip Technology Inc. and its subsidiaries.
 
@@ -30,130 +30,119 @@
     TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
-*/
+ */
 
 #ifndef TMR0_H
 #define TMR0_H
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "tmr0_deprecated.h"
+#include "timer_interface.h"
 
 /**
  * @misradeviation{@advisory,2.5}
  * MCC Melody drivers provide macros that can be added to an application. 
  * It depends on the application whether a macro is used or not. 
  */
- 
-/**
- * @ingroup tmr08bit
- * @brief Defines the maximum count value of the timer.
- */
-#define TMR0_MAX_COUNT (255U)
-/**
- * @ingroup tmr08bit
- * @brief Defines the timer prescaled clock frequency in hertz.
- */
-/* cppcheck-suppress misra-c2012-2.5 */ 
-#define TMR0_CLOCK_FREQ (32000000UL)
-/**
- * @ingroup tmr08bit
- * @brief Defines the timer interrupt ticker factor.
- */
-#define TMR0_INTERRUPT_TICKER_FACTOR (1U)
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_MAX_COUNT.
- */
-/* cppcheck-suppress misra-c2012-2.5 */ 
-#define TIMER0_MAX_COUNT TMR0_MAX_COUNT
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_CLOCK_FREQ.
- */
-/* cppcheck-suppress misra-c2012-2.5 */ 
-#define TIMER0_CLOCK_FREQ TMR0_CLOCK_FREQ
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_Initialize API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */ 
-#define Timer0_Initialize TMR0_Initialize
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_Deinitialize API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */ 
-#define Timer0_Deinitialize TMR0_Deinitialize
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_Start API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_Start TMR0_Start
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_Stop API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_Stop TMR0_Stop
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_CounterGet API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_CounterGet TMR0_CounterGet
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_CounterSet API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_CounterSet TMR0_CounterSet
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_PeriodSet API
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_PeriodSet TMR0_PeriodSet
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_PeriodGet API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_PeriodGet TMR0_PeriodGet
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_MaxCountGet API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_MaxCountGet TMR0_MaxCountGet
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_TMRInterruptEnable API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_TMRInterruptEnable TMR0_TMRInterruptEnable
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_TMRInterruptDisable API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_TMRInterruptDisable TMR0_TMRInterruptDisable
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_ISR API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_ISR TMR0_ISR
-/**
- * @ingroup tmr08bit
- * @brief Defines the Custom Name for the \ref TMR0_PeriodMatchCallbackRegister API.
- */
-/* cppcheck-suppress misra-c2012-2.5 */  
-#define Timer0_PeriodMatchCallbackRegister TMR0_PeriodMatchCallbackRegister
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
+ * @brief Defines the maximum count value of the timer.
+ */
+#define TMR0_MAX_COUNT (65535U)
+/**
+ * @ingroup timerdriver
+ * @brief Defines the timer prescaled clock frequency in hertz.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define TMR0_CLOCK_FREQ (32000000UL)
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_MAX_COUNT.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define TIMER0_MAX_COUNT TMR0_MAX_COUNT
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_CLOCK_FREQ.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define TIMER0_CLOCK_FREQ TMR0_CLOCK_FREQ
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_Initialize API.
+ */
+#define Timer0_Initialize TMR0_Initialize
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_Deinitialize API.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_Deinitialize TMR0_Deinitialize
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_Start API.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_Start TMR0_Start
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_Stop API.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_Stop TMR0_Stop
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_CounterGet API.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_CounterGet TMR0_CounterGet
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_CounterSet API.
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_CounterSet TMR0_CounterSet
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_PeriodSet API
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_PeriodSet TMR0_PeriodSet
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_PeriodGet API
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_PeriodGet TMR0_PeriodGet
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_MaxCountGet API
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_MaxCountGet TMR0_MaxCountGet
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_ISR API
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_ISR TMR0_ISR
+/**
+ * @ingroup timerdriver
+ * @brief Defines the Custom Name for the \ref TMR0_OverflowCallbackRegister API
+ */
+/* cppcheck-suppress misra-c2012-2.5 */
+#define Timer0_OverflowCallbackRegister TMR0_OverflowCallbackRegister
+
+/**
+ @ingroup timerdriver
+ @struct TIMER_INTERFACE
+ @brief Declares an instance of TIMER_INTERFACE for the TMR0 module.
+ */
+extern const struct TIMER_INTERFACE Timer0;
+
+/**
+ * @ingroup timerdriver
  * @brief Initializes the Timer0 (TMR0) module.
  *        This routine must be called before any other TMR0 routines.
  * @param None.
@@ -162,7 +151,7 @@
 void TMR0_Initialize(void);
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * @brief Deinitializes the TMR0 module.
  * @param None.
  * @return None.
@@ -170,7 +159,7 @@ void TMR0_Initialize(void);
 void TMR0_Deinitialize(void);
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * @brief Starts the TMR0 timer.
  * @pre Initialize TMR0 with TMR0_Initialize() before calling this API.
  * @param None.
@@ -179,7 +168,7 @@ void TMR0_Deinitialize(void);
 void TMR0_Start(void);
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * @brief Stops the TMR0 timer.
  * @pre Initialize TMR0 with TMR0_Initialize() before calling this API.
  * @param None.
@@ -188,83 +177,68 @@ void TMR0_Start(void);
 void TMR0_Stop(void);
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * @brief Returns the current counter value.
  * @pre Initialize TMR0 with TMR0_Initialize() before calling this API.
  * @param None.
- * @return Counter value from the TMR0L register
+ * @return Counter value from the TMR0 register
  */
-uint8_t TMR0_CounterGet(void);
+uint32_t TMR0_CounterGet(void);
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * @brief Sets the counter value.
  * @pre Initialize TMR0 with TMR0_Initialize() before calling this API.
- * @param counterValue - Counter value to be written to the TMR0L register
+ * @param counterValue - Counter value to be written to the TMR0 register
  * @return None.
  */
-void TMR0_CounterSet(uint8_t counterValue);
+void TMR0_CounterSet(uint32_t counterValue);
 
 /**
- * @ingroup tmr08bit
- * @brief Sets the period value.
+ * @ingroup timerdriver
+ * @brief Sets the period count value.
  * @pre Initialize TMR0 with TMR0_Initialize() before calling this API.
- * @param periodCount - Period count value written to the TMR0H register
+ * @param periodCount - Period count value to be written to the TMR0 register
  * @return None.
  */
-void TMR0_PeriodSet(uint8_t periodCount);
+void TMR0_PeriodSet(uint32_t periodCount);
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * @brief Returns the current period value.
  * @pre Initialize TMR0 with TMR0_Initialize() before calling this API.
  * @param None.
- * @return Period count value from the TMR0H register
+ * @return Period count value
  */
-uint8_t TMR0_PeriodGet(void);
+uint32_t TMR0_PeriodGet(void);
 
 /**
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * @brief Returns the maximum count value.
  * @param None.
  * @return Maximum count value
  */
-uint8_t TMR0_MaxCountGet(void);
+uint32_t TMR0_MaxCountGet(void);
 
 /**
- * @ingroup tmr08bit
- * @brief Enables the TMR0 interrupt.
- * @param None.
- * @return None.
- */
-void TMR0_TMRInterruptEnable(void);
-
-/**
- * @ingroup tmr08bit
- * @brief Disables the TMR0 interrupt.
- * @param None.
- * @return None.
- */
-void TMR0_TMRInterruptDisable(void);
-
-/**
- * @ingroup tmr08bit
- * @brief Interrupt Service Routine (ISR) for the TMR0 overflow or period match interrupt.
+ * @ingroup timerdriver
+ * @brief Interrupt Service Routine (ISR) for the TMR0 overflow interrupt.
  * @param None.
  * @return None.
  */
 void TMR0_ISR(void);
 
 /**
- * @ingroup tmr08bit
- * @brief Registers a callback function for the TMR0 overflow or period match event.
- * @param CallbackHandler - Address to the custom callback function
+ * @ingroup timerdriver
+ * @brief Registers a callback function for the TMR0 overflow event.
+ * @param CallbackHandler - Address of the custom callback function
  * @return None.
  */
-void TMR0_PeriodMatchCallbackRegister(void (* CallbackHandler)(void));
+void TMR0_OverflowCallbackRegister(void (* CallbackHandler)(void));
+
 #define DIVIDER 0xFFFF
 
-bool timerOverflow; 
+bool timerOverflow = false;
 uint16_t divider = DIVIDER;
 
 #endif //TMR0_H

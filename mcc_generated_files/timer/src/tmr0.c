@@ -1,16 +1,16 @@
 /**
- * TMR0 Generated Driver File
+ * TMR0 Generated Timer Driver File
  * 
  * @file tmr0.c
  * 
- * @ingroup tmr08bit
+ * @ingroup timerdriver
  * 
- * @brief  Driver implementation for the TMR0 driver
+ * @brief Timer Driver implementation for the TMR0 driver
  *
- * @version TMR0 Driver Version 3.0.0
+ * @version TMR0 Timer Driver Version 3.0.0
  *
  * @version Package Version 5.0.0
-*/
+ */
 /*
 © [2025] Microchip Technology Inc. and its subsidiaries.
 
@@ -30,117 +30,122 @@
     TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
-*/
+ */
 
 #include <xc.h>
 #include "../tmr0.h"
 
-static void (*TMR0_PeriodMatchCallback)(void);
-static void TMR0_DefaultCallback(void);
+const struct TIMER_INTERFACE Timer0 = {
+    .Initialize = TMR0_Initialize,
+    .Deinitialize = TMR0_Deinitialize,
+    .Start = TMR0_Start,
+    .Stop = TMR0_Stop,
+    .PeriodSet = TMR0_PeriodSet,
+    .PeriodGet = TMR0_PeriodGet,
+    .CounterGet = TMR0_CounterGet,
+    .CounterSet = TMR0_CounterSet,
+    .MaxCountGet = TMR0_MaxCountGet,
+    .TimeoutCallbackRegister = TMR0_OverflowCallbackRegister,
+    .Tasks = NULL
+};
+
+static volatile uint16_t tmr0PeriodCount;
+static void (*TMR0_OverflowCallback)(void);
+static void TMR0_DefaultOverflowCallback(void);
 
 /**
   Section: TMR0 APIs
-*/ 
+ */
 
-void TMR0_Initialize(void)
-{
-    TMR0H = 0xFF;                    // Period 8us; Frequency 32000000 Hz; Count 255
+void TMR0_Initialize(void) {
+    TMR0H = 0xFF; // Period 1ms; Frequency 32000000Hz; Count 33536
     TMR0L = 0x0;
-    
-    T0CON1 = (3 << _T0CON1_T0CS_POSN)   // T0CS HFINTOSC
-        | (0 << _T0CON1_T0CKPS_POSN)   // T0CKPS 1:1
-        | (1 << _T0CON1_T0ASYNC_POSN);  // T0ASYNC not_synchronised
-    
-    TMR0_PeriodMatchCallback = TMR0_DefaultCallback;
 
-    PIR0bits.TMR0IF = 0;	   
-    PIE0bits.TMR0IE = 1;	
+    T0CON1 = (3 << _T0CON1_T0CS_POSN) // T0CS HFINTOSC
+            | (0 << _T0CON1_T0CKPS_POSN) // T0CKPS 1:1
+            | (1 << _T0CON1_T0ASYNC_POSN); // T0ASYNC not_synchronised
 
-    T0CON0 = (0 << _T0CON0_T0OUTPS_POSN)   // T0OUTPS 1:1
-        | (1 << _T0CON0_T0EN_POSN)   // T0EN enabled
-        | (0 << _T0CON0_T0MD16_POSN);  // T0MD16 8-bit
+    tmr0PeriodCount = ((uint16_t) TMR0H << 8) | TMR0L;
+
+    TMR0_OverflowCallback = TMR0_DefaultOverflowCallback;
+
+    PIR0bits.TMR0IF = 0;
+    PIE0bits.TMR0IE = 1;
+
+    T0CON0 = (0 << _T0CON0_T0OUTPS_POSN) // T0OUTPS 1:1
+            | (1 << _T0CON0_T0EN_POSN) // T0EN enabled
+            | (1 << _T0CON0_T0MD16_POSN); // T0MD16 16-bit
 }
 
-void TMR0_Deinitialize(void)
-{
+void TMR0_Deinitialize(void) {
     T0CON0bits.T0EN = 0;
-    
-    PIR0bits.TMR0IF = 0;	   
-    PIE0bits.TMR0IE = 0;		
-    
+
+    PIR0bits.TMR0IF = 0;
+    PIE0bits.TMR0IE = 0;
+
     T0CON0 = 0x0;
     T0CON1 = 0x0;
     TMR0H = 0xFF;
-    TMR0L =0x0;
+    TMR0L = 0x0;
 }
 
-void TMR0_Start(void)
-{
+void TMR0_Start(void) {
     T0CON0bits.T0EN = 1;
 }
 
-void TMR0_Stop(void)
-{
+void TMR0_Stop(void) {
     T0CON0bits.T0EN = 0;
 }
 
-uint8_t TMR0_CounterGet(void)
-{
-    uint8_t counterValue;
+uint32_t TMR0_CounterGet(void) {
+    uint16_t counterValue;
+    uint8_t counterLowByte;
+    uint8_t counterHighByte;
 
-    counterValue = TMR0L;
+    counterLowByte = TMR0L;
+    counterHighByte = TMR0H;
+    counterValue = ((uint16_t) counterHighByte << 8) + counterLowByte;
 
-    return counterValue;
+    return (uint32_t) counterValue;
 }
 
-void TMR0_CounterSet(uint8_t counterValue)
-{
-    TMR0L = counterValue;
- }
-
-void TMR0_PeriodSet(uint8_t periodValue)
-{
-   TMR0H = periodValue;
+void TMR0_CounterSet(uint32_t counterValue) {
+    TMR0H = (uint8_t) (counterValue >> 8);
+    TMR0L = (uint8_t) (counterValue);
 }
 
-uint8_t TMR0_PeriodGet(void)
-{
-    return TMR0H;
+void TMR0_PeriodSet(uint32_t periodCount) {
+    tmr0PeriodCount = TMR0_MAX_COUNT - (uint16_t) periodCount;
+
+    TMR0H = (uint8_t) (tmr0PeriodCount >> 8);
+    TMR0L = (uint8_t) (tmr0PeriodCount);
 }
 
-uint8_t TMR0_MaxCountGet(void)
-{
-    return TMR0_MAX_COUNT;
+uint32_t TMR0_PeriodGet(void) {
+    return ((uint32_t) TMR0_MAX_COUNT - tmr0PeriodCount);
 }
 
-void TMR0_TMRInterruptEnable(void)
-{
-    PIE0bits.TMR0IE = 1;
+uint32_t TMR0_MaxCountGet(void) {
+    return (uint32_t) TMR0_MAX_COUNT;
 }
 
-void TMR0_TMRInterruptDisable(void)
-{
-    PIE0bits.TMR0IE = 0;
-}
+void TMR0_ISR(void) {
+    TMR0H = (uint8_t) (tmr0PeriodCount >> 8);
+    TMR0L = (uint8_t) (tmr0PeriodCount);
 
-void TMR0_ISR(void)
-{
-    if(NULL != TMR0_PeriodMatchCallback)
-    {
-        TMR0_PeriodMatchCallback();
+    if (NULL != TMR0_OverflowCallback) {
+        TMR0_OverflowCallback();
     }
     PIR0bits.TMR0IF = 0;
 }
 
-void TMR0_PeriodMatchCallbackRegister(void (* callbackHandler)(void))
-{
-    TMR0_PeriodMatchCallback = callbackHandler;
+void TMR0_OverflowCallbackRegister(void (* callbackHandler)(void)) {
+    TMR0_OverflowCallback = callbackHandler;
 }
 
-static void TMR0_DefaultCallback(void)
-{
-    // Default callback
-        divider--;
+static void TMR0_DefaultOverflowCallback(void) {
+    // Default interrupt handler
+    divider--;
     if (divider == 0) 
     {
         timerOverflow = true;

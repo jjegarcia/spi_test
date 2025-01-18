@@ -5,11 +5,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "172 mcc_generated_files/system/src/../../system/pins.h
 [; ;mcc_generated_files/system/src/../../system/pins.h: 172: void PIN_MANAGER_Initialize (void);
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
-"126 mcc_generated_files/system/src/../../spi/mssp1.h
-[; ;mcc_generated_files/system/src/../../spi/mssp1.h: 126: void SPI1_Initialize(void);
+"151 mcc_generated_files/system/src/../../timer/tmr0.h
+[; ;mcc_generated_files/system/src/../../timer/tmr0.h: 151: void TMR0_Initialize(void);
+[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
+"129 mcc_generated_files/system/src/../../spi/mssp1.h
+[; ;mcc_generated_files/system/src/../../spi/mssp1.h: 129: void SPI1_Initialize(void);
 [v _SPI1_Initialize `(v ~T0 @X0 0 ef ]
-"86 mcc_generated_files/system/src/../../system/interrupt.h
-[; ;mcc_generated_files/system/src/../../system/interrupt.h: 86: void INTERRUPT_Initialize (void);
+"87 mcc_generated_files/system/src/../../system/interrupt.h
+[; ;mcc_generated_files/system/src/../../system/interrupt.h: 87: void INTERRUPT_Initialize(void);
 [v _INTERRUPT_Initialize `(v ~T0 @X0 0 ef ]
 "110 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 110: __asm("INDF0 equ 00h");
@@ -563,9 +566,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9826
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 9826: __asm("TOSH equ 01FEFh");
 [; <" TOSH equ 01FEFh ;# ">
-"177 mcc_generated_files/system/src/../../system/interrupt.h
-[; ;mcc_generated_files/system/src/../../system/interrupt.h: 177: _Bool pushed;
+"179 mcc_generated_files/system/src/../../system/interrupt.h
+[; ;mcc_generated_files/system/src/../../system/interrupt.h: 179: _Bool pushed = 0;
 [v _pushed `a ~T0 @X0 1 e ]
+[i _pushed
+-> -> 0 `i `a
+]
+"241 mcc_generated_files/system/src/../../timer/tmr0.h
+[; ;mcc_generated_files/system/src/../../timer/tmr0.h: 241: _Bool timerOverflow = 0;
+[v _timerOverflow `a ~T0 @X0 1 e ]
+[i _timerOverflow
+-> -> 0 `i `a
+]
+"242
+[; ;mcc_generated_files/system/src/../../timer/tmr0.h: 242: uint16_t divider = 0xFFFF;
+[v _divider `us ~T0 @X0 1 e ]
+[i _divider
+-> -> 65535 `ui `us
+]
 "40 mcc_generated_files/system/src/system.c
 [; ;mcc_generated_files/system/src/system.c: 40: void SYSTEM_Initialize(void)
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
@@ -581,12 +599,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/system/src/system.c: 43:     PIN_MANAGER_Initialize();
 [e ( _PIN_MANAGER_Initialize ..  ]
 "44
-[; ;mcc_generated_files/system/src/system.c: 44:     SPI1_Initialize();
-[e ( _SPI1_Initialize ..  ]
+[; ;mcc_generated_files/system/src/system.c: 44:     TMR0_Initialize();
+[e ( _TMR0_Initialize ..  ]
 "45
-[; ;mcc_generated_files/system/src/system.c: 45:     INTERRUPT_Initialize();
-[e ( _INTERRUPT_Initialize ..  ]
+[; ;mcc_generated_files/system/src/system.c: 45:     SPI1_Initialize();
+[e ( _SPI1_Initialize ..  ]
 "46
-[; ;mcc_generated_files/system/src/system.c: 46: }
-[e :UE 521 ]
+[; ;mcc_generated_files/system/src/system.c: 46:     INTERRUPT_Initialize();
+[e ( _INTERRUPT_Initialize ..  ]
+"47
+[; ;mcc_generated_files/system/src/system.c: 47: }
+[e :UE 522 ]
 }

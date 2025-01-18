@@ -6249,6 +6249,9 @@ struct SPI_INTERFACE
 extern const struct SPI_INTERFACE SPI1_Client;
 # 115 "mcc_generated_files/spi/src/../mssp1.h"
 typedef enum {
+    CLIENT_CONFIG_M0,
+    CLIENT_CONFIG_M1,
+    CLIENT_CONFIG_M2,
     CLIENT_CONFIG,
     MSSP1_DEFAULT
 } spi1_configuration_name_t;
@@ -6268,7 +6271,7 @@ void SPI1_Initialize(void);
 
 
 void SPI1_Deinitialize(void);
-# 144 "mcc_generated_files/spi/src/../mssp1.h"
+# 147 "mcc_generated_files/spi/src/../mssp1.h"
 _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
@@ -6278,11 +6281,11 @@ _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
 void SPI1_Close(void);
-# 161 "mcc_generated_files/spi/src/../mssp1.h"
+# 164 "mcc_generated_files/spi/src/../mssp1.h"
 void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
-# 170 "mcc_generated_files/spi/src/../mssp1.h"
+# 173 "mcc_generated_files/spi/src/../mssp1.h"
 void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
-# 179 "mcc_generated_files/spi/src/../mssp1.h"
+# 182 "mcc_generated_files/spi/src/../mssp1.h"
 void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
@@ -6292,7 +6295,7 @@ void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
 uint8_t SPI1_ByteExchange(uint8_t byteData);
-# 197 "mcc_generated_files/spi/src/../mssp1.h"
+# 200 "mcc_generated_files/spi/src/../mssp1.h"
 void SPI1_ByteWrite(uint8_t byteData);
 
 
@@ -6302,9 +6305,9 @@ void SPI1_ByteWrite(uint8_t byteData);
 
 
 uint8_t SPI1_ByteRead(void);
-# 214 "mcc_generated_files/spi/src/../mssp1.h"
+# 217 "mcc_generated_files/spi/src/../mssp1.h"
 _Bool SPI1_IsRxReady(void);
-# 223 "mcc_generated_files/spi/src/../mssp1.h"
+# 226 "mcc_generated_files/spi/src/../mssp1.h"
 _Bool SPI1_IsTxReady(void);
 # 35 "mcc_generated_files/spi/src/mssp1.c" 2
 
@@ -6338,7 +6341,10 @@ const struct SPI_INTERFACE SPI1_Client = {
 };
 
 static const spi_configuration_t spi1_configuration[] = {
+    { 0x40, 0x4, 0x10, 0x01 },
     { 0x0, 0x4, 0x10, 0x01 },
+    { 0x40, 0x14, 0x10, 0x01 },
+    { 0x0, 0x14, 0x10, 0x01 },
     { 0x64, 0x4, 0x10, 0x0 }
 };
 

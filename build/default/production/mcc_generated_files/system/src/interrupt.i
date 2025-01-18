@@ -9,22 +9,23 @@
 # 1 "mcc_generated_files/system/src/interrupt.c" 2
 # 34 "mcc_generated_files/system/src/interrupt.c"
 # 1 "mcc_generated_files/system/src/../../system/interrupt.h" 1
-# 33 "mcc_generated_files/system/src/../../system/interrupt.h"
+# 34 "mcc_generated_files/system/src/../../system/interrupt.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.50\\pic\\include\\c99\\stdbool.h" 1 3
-# 33 "mcc_generated_files/system/src/../../system/interrupt.h" 2
-# 86 "mcc_generated_files/system/src/../../system/interrupt.h"
-void INTERRUPT_Initialize (void);
-# 140 "mcc_generated_files/system/src/../../system/interrupt.h"
+# 34 "mcc_generated_files/system/src/../../system/interrupt.h" 2
+# 87 "mcc_generated_files/system/src/../../system/interrupt.h"
+void INTERRUPT_Initialize(void);
+# 141 "mcc_generated_files/system/src/../../system/interrupt.h"
 void INT_ISR(void);
-# 149 "mcc_generated_files/system/src/../../system/interrupt.h"
+# 150 "mcc_generated_files/system/src/../../system/interrupt.h"
 void INT_CallBack(void);
-# 158 "mcc_generated_files/system/src/../../system/interrupt.h"
+# 159 "mcc_generated_files/system/src/../../system/interrupt.h"
 void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-# 167 "mcc_generated_files/system/src/../../system/interrupt.h"
+# 168 "mcc_generated_files/system/src/../../system/interrupt.h"
 extern void (*INT_InterruptHandler)(void);
-# 176 "mcc_generated_files/system/src/../../system/interrupt.h"
+# 177 "mcc_generated_files/system/src/../../system/interrupt.h"
 void INT_DefaultInterruptHandler(void);
-_Bool pushed;
+
+_Bool pushed = 0;
 # 34 "mcc_generated_files/system/src/interrupt.c" 2
 
 # 1 "mcc_generated_files/system/src/../../system/system.h" 1
@@ -6290,6 +6291,9 @@ struct SPI_INTERFACE
 extern const struct SPI_INTERFACE SPI1_Client;
 # 115 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 typedef enum {
+    CLIENT_CONFIG_M0,
+    CLIENT_CONFIG_M1,
+    CLIENT_CONFIG_M2,
     CLIENT_CONFIG,
     MSSP1_DEFAULT
 } spi1_configuration_name_t;
@@ -6309,7 +6313,7 @@ void SPI1_Initialize(void);
 
 
 void SPI1_Deinitialize(void);
-# 144 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 147 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
@@ -6319,11 +6323,11 @@ _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
 void SPI1_Close(void);
-# 161 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 164 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
-# 170 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 173 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
-# 179 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 182 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
@@ -6333,7 +6337,7 @@ void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
 uint8_t SPI1_ByteExchange(uint8_t byteData);
-# 197 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 200 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 void SPI1_ByteWrite(uint8_t byteData);
 
 
@@ -6343,24 +6347,69 @@ void SPI1_ByteWrite(uint8_t byteData);
 
 
 uint8_t SPI1_ByteRead(void);
-# 214 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 217 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 _Bool SPI1_IsRxReady(void);
-# 223 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 226 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 _Bool SPI1_IsTxReady(void);
 # 44 "mcc_generated_files/system/src/../../system/system.h" 2
 
 # 1 "mcc_generated_files/system/src/../../system/../system/interrupt.h" 1
 # 45 "mcc_generated_files/system/src/../../system/system.h" 2
-# 54 "mcc_generated_files/system/src/../../system/system.h"
-void SYSTEM_Initialize(void);
-# 35 "mcc_generated_files/system/src/interrupt.c" 2
 
 
-# 1 "mcc_generated_files/system/src/../../timer/tmr0.h" 1
-# 40 "mcc_generated_files/system/src/../../timer/tmr0.h"
-# 1 "mcc_generated_files/system/src/../../timer/tmr0_deprecated.h" 1
-# 40 "mcc_generated_files/system/src/../../timer/tmr0.h" 2
-# 162 "mcc_generated_files/system/src/../../timer/tmr0.h"
+# 1 "mcc_generated_files/system/src/../../system/../timer/tmr0.h" 1
+# 40 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
+# 1 "mcc_generated_files/system/src/../../system/../timer/timer_interface.h" 1
+# 63 "mcc_generated_files/system/src/../../system/../timer/timer_interface.h"
+struct TIMER_INTERFACE
+{
+    void (*Initialize)(void);
+
+
+    void (*Deinitialize)(void);
+
+
+    void (*Start)(void);
+
+
+    void (*Stop)(void);
+
+
+
+
+
+
+
+    void (*PeriodSet)(uint32_t count);
+
+
+ uint32_t (*PeriodGet)(void);
+
+
+    uint32_t (*CounterGet)(void);
+
+
+    void (*CounterSet)(uint32_t count);
+
+
+    uint32_t (*MaxCountGet)(void);
+
+
+
+
+
+
+
+    void (*TimeoutCallbackRegister)(void (*CallbackHandler)(void));
+
+
+    void (*Tasks)(void);
+
+};
+# 40 "mcc_generated_files/system/src/../../system/../timer/tmr0.h" 2
+# 142 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
+extern const struct TIMER_INTERFACE Timer0;
+# 151 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
 void TMR0_Initialize(void);
 
 
@@ -6370,18 +6419,18 @@ void TMR0_Initialize(void);
 
 
 void TMR0_Deinitialize(void);
-# 179 "mcc_generated_files/system/src/../../timer/tmr0.h"
+# 168 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
 void TMR0_Start(void);
-# 188 "mcc_generated_files/system/src/../../timer/tmr0.h"
+# 177 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
 void TMR0_Stop(void);
-# 197 "mcc_generated_files/system/src/../../timer/tmr0.h"
-uint8_t TMR0_CounterGet(void);
-# 206 "mcc_generated_files/system/src/../../timer/tmr0.h"
-void TMR0_CounterSet(uint8_t counterValue);
-# 215 "mcc_generated_files/system/src/../../timer/tmr0.h"
-void TMR0_PeriodSet(uint8_t periodCount);
-# 224 "mcc_generated_files/system/src/../../timer/tmr0.h"
-uint8_t TMR0_PeriodGet(void);
+# 186 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
+uint32_t TMR0_CounterGet(void);
+# 195 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
+void TMR0_CounterSet(uint32_t counterValue);
+# 204 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
+void TMR0_PeriodSet(uint32_t periodCount);
+# 213 "mcc_generated_files/system/src/../../system/../timer/tmr0.h"
+uint32_t TMR0_PeriodGet(void);
 
 
 
@@ -6389,23 +6438,7 @@ uint8_t TMR0_PeriodGet(void);
 
 
 
-uint8_t TMR0_MaxCountGet(void);
-
-
-
-
-
-
-
-void TMR0_TMRInterruptEnable(void);
-
-
-
-
-
-
-
-void TMR0_TMRInterruptDisable(void);
+uint32_t TMR0_MaxCountGet(void);
 
 
 
@@ -6421,28 +6454,39 @@ void TMR0_ISR(void);
 
 
 
-void TMR0_PeriodMatchCallbackRegister(void (* CallbackHandler)(void));
+void TMR0_OverflowCallbackRegister(void (* CallbackHandler)(void));
 
 
-_Bool timerOverflow;
+
+_Bool timerOverflow = 0;
 uint16_t divider = 0xFFFF;
-# 37 "mcc_generated_files/system/src/interrupt.c" 2
+# 47 "mcc_generated_files/system/src/../../system/system.h" 2
+
+
+
+
+
+
+
+
+void SYSTEM_Initialize(void);
+# 35 "mcc_generated_files/system/src/interrupt.c" 2
+
 
 
 void (*INT_InterruptHandler)(void);
 
-void INTERRUPT_Initialize (void)
-{
+void INTERRUPT_Initialize(void) {
 
 
     (PIR0bits.INTF = 0);
-    (INTCONbits.INTEDG = 1);
+    (INTCONbits.INTEDG = 0);
 
     INT_SetInterruptHandler(INT_DefaultInterruptHandler);
     (PIE0bits.INTE = 1);
 
 }
-# 60 "mcc_generated_files/system/src/interrupt.c"
+# 58 "mcc_generated_files/system/src/interrupt.c"
 void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager(void) {
 
     if (PIE0bits.INTE == 1 && PIR0bits.INTF == 1) {
@@ -6460,30 +6504,26 @@ void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager(void) {
     }
 }
 
-void INT_ISR(void)
-{
+void INT_ISR(void) {
     (PIR0bits.INTF = 0);
 
 
     INT_CallBack();
 }
 
+void INT_CallBack(void) {
 
-void INT_CallBack(void)
-{
-
-    if(INT_InterruptHandler)
-    {
+    if (INT_InterruptHandler) {
         INT_InterruptHandler();
     }
 }
 
-void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
+void INT_SetInterruptHandler(void (* InterruptHandler)(void)) {
     INT_InterruptHandler = InterruptHandler;
 }
 
-void INT_DefaultInterruptHandler(void){
+void INT_DefaultInterruptHandler(void) {
 
 
-        pushed = 1;
+    pushed = 1;
 }

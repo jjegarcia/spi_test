@@ -8,7 +8,7 @@
  * @brief This file contains API prototypes and other data types for the Interrupt Manager driver.
  *
  * @version Interrupt Manager Driver Version 2.0.6
-*/
+ */
 
 /*
 © [2025] Microchip Technology Inc. and its subsidiaries.
@@ -29,7 +29,8 @@
     TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
-*/
+ */
+
 #include <stdbool.h>
 
 #ifndef INTERRUPT_H
@@ -83,7 +84,7 @@
  * @param None.
  * @return None.
  */
-void INTERRUPT_Initialize (void);
+void INTERRUPT_Initialize(void);
 
 
 /**
@@ -174,8 +175,10 @@ extern void (*INT_InterruptHandler)(void);
  * @return None.
  */
 void INT_DefaultInterruptHandler(void);
-bool pushed;
+
+bool pushed = false;
+
 #endif  // INTERRUPT_H
 /**
  End of File
-*/
+ */

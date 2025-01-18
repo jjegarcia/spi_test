@@ -6205,9 +6205,65 @@ extern __bank0 __bit __timeout;
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.50\\pic\\include\\c99\\stdbool.h" 1 3
 # 39 "mcc_generated_files/timer/src/../tmr0.h" 2
 
-# 1 "mcc_generated_files/timer/src/../tmr0_deprecated.h" 1
+# 1 "mcc_generated_files/timer/src/../timer_interface.h" 1
+# 39 "mcc_generated_files/timer/src/../timer_interface.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.50\\pic\\include\\c99\\stddef.h" 1 3
+# 19 "C:\\Program Files\\Microchip\\xc8\\v2.50\\pic\\include\\c99\\stddef.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.50\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 138 "C:\\Program Files\\Microchip\\xc8\\v2.50\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef int ptrdiff_t;
+# 20 "C:\\Program Files\\Microchip\\xc8\\v2.50\\pic\\include\\c99\\stddef.h" 2 3
+# 39 "mcc_generated_files/timer/src/../timer_interface.h" 2
+# 63 "mcc_generated_files/timer/src/../timer_interface.h"
+struct TIMER_INTERFACE
+{
+    void (*Initialize)(void);
+
+
+    void (*Deinitialize)(void);
+
+
+    void (*Start)(void);
+
+
+    void (*Stop)(void);
+
+
+
+
+
+
+
+    void (*PeriodSet)(uint32_t count);
+
+
+ uint32_t (*PeriodGet)(void);
+
+
+    uint32_t (*CounterGet)(void);
+
+
+    void (*CounterSet)(uint32_t count);
+
+
+    uint32_t (*MaxCountGet)(void);
+
+
+
+
+
+
+
+    void (*TimeoutCallbackRegister)(void (*CallbackHandler)(void));
+
+
+    void (*Tasks)(void);
+
+};
 # 40 "mcc_generated_files/timer/src/../tmr0.h" 2
-# 162 "mcc_generated_files/timer/src/../tmr0.h"
+# 142 "mcc_generated_files/timer/src/../tmr0.h"
+extern const struct TIMER_INTERFACE Timer0;
+# 151 "mcc_generated_files/timer/src/../tmr0.h"
 void TMR0_Initialize(void);
 
 
@@ -6217,18 +6273,18 @@ void TMR0_Initialize(void);
 
 
 void TMR0_Deinitialize(void);
-# 179 "mcc_generated_files/timer/src/../tmr0.h"
+# 168 "mcc_generated_files/timer/src/../tmr0.h"
 void TMR0_Start(void);
-# 188 "mcc_generated_files/timer/src/../tmr0.h"
+# 177 "mcc_generated_files/timer/src/../tmr0.h"
 void TMR0_Stop(void);
-# 197 "mcc_generated_files/timer/src/../tmr0.h"
-uint8_t TMR0_CounterGet(void);
-# 206 "mcc_generated_files/timer/src/../tmr0.h"
-void TMR0_CounterSet(uint8_t counterValue);
-# 215 "mcc_generated_files/timer/src/../tmr0.h"
-void TMR0_PeriodSet(uint8_t periodCount);
-# 224 "mcc_generated_files/timer/src/../tmr0.h"
-uint8_t TMR0_PeriodGet(void);
+# 186 "mcc_generated_files/timer/src/../tmr0.h"
+uint32_t TMR0_CounterGet(void);
+# 195 "mcc_generated_files/timer/src/../tmr0.h"
+void TMR0_CounterSet(uint32_t counterValue);
+# 204 "mcc_generated_files/timer/src/../tmr0.h"
+void TMR0_PeriodSet(uint32_t periodCount);
+# 213 "mcc_generated_files/timer/src/../tmr0.h"
+uint32_t TMR0_PeriodGet(void);
 
 
 
@@ -6236,23 +6292,7 @@ uint8_t TMR0_PeriodGet(void);
 
 
 
-uint8_t TMR0_MaxCountGet(void);
-
-
-
-
-
-
-
-void TMR0_TMRInterruptEnable(void);
-
-
-
-
-
-
-
-void TMR0_TMRInterruptDisable(void);
+uint32_t TMR0_MaxCountGet(void);
 
 
 
@@ -6268,42 +6308,58 @@ void TMR0_ISR(void);
 
 
 
-void TMR0_PeriodMatchCallbackRegister(void (* CallbackHandler)(void));
+void TMR0_OverflowCallbackRegister(void (* CallbackHandler)(void));
 
 
-_Bool timerOverflow;
+
+_Bool timerOverflow = 0;
 uint16_t divider = 0xFFFF;
 # 36 "mcc_generated_files/timer/src/tmr0.c" 2
 
 
-static void (*TMR0_PeriodMatchCallback)(void);
-static void TMR0_DefaultCallback(void);
+const struct TIMER_INTERFACE Timer0 = {
+    .Initialize = TMR0_Initialize,
+    .Deinitialize = TMR0_Deinitialize,
+    .Start = TMR0_Start,
+    .Stop = TMR0_Stop,
+    .PeriodSet = TMR0_PeriodSet,
+    .PeriodGet = TMR0_PeriodGet,
+    .CounterGet = TMR0_CounterGet,
+    .CounterSet = TMR0_CounterSet,
+    .MaxCountGet = TMR0_MaxCountGet,
+    .TimeoutCallbackRegister = TMR0_OverflowCallbackRegister,
+    .Tasks = ((void*)0)
+};
+
+static volatile uint16_t tmr0PeriodCount;
+static void (*TMR0_OverflowCallback)(void);
+static void TMR0_DefaultOverflowCallback(void);
 
 
 
 
 
-void TMR0_Initialize(void)
-{
+void TMR0_Initialize(void) {
     TMR0H = 0xFF;
     TMR0L = 0x0;
 
     T0CON1 = (3 << 0x5)
-        | (0 << 0x0)
-        | (1 << 0x4);
+            | (0 << 0x0)
+            | (1 << 0x4);
 
-    TMR0_PeriodMatchCallback = TMR0_DefaultCallback;
+    tmr0PeriodCount = ((uint16_t) TMR0H << 8) | TMR0L;
+
+    TMR0_OverflowCallback = TMR0_DefaultOverflowCallback;
 
     PIR0bits.TMR0IF = 0;
     PIE0bits.TMR0IE = 1;
 
     T0CON0 = (0 << 0x0)
-        | (1 << 0x7)
-        | (0 << 0x4);
+            | (1 << 0x7)
+            | (1 << 0x4);
 }
 
-void TMR0_Deinitialize(void)
-{
+void TMR0_Deinitialize(void) {
     T0CON0bits.T0EN = 0;
 
     PIR0bits.TMR0IF = 0;
@@ -6312,76 +6368,66 @@ void TMR0_Deinitialize(void)
     T0CON0 = 0x0;
     T0CON1 = 0x0;
     TMR0H = 0xFF;
-    TMR0L =0x0;
+    TMR0L = 0x0;
 }
 
-void TMR0_Start(void)
-{
+void TMR0_Start(void) {
     T0CON0bits.T0EN = 1;
 }
 
-void TMR0_Stop(void)
-{
+void TMR0_Stop(void) {
     T0CON0bits.T0EN = 0;
 }
 
-uint8_t TMR0_CounterGet(void)
-{
-    uint8_t counterValue;
+uint32_t TMR0_CounterGet(void) {
+    uint16_t counterValue;
+    uint8_t counterLowByte;
+    uint8_t counterHighByte;
 
-    counterValue = TMR0L;
+    counterLowByte = TMR0L;
+    counterHighByte = TMR0H;
+    counterValue = ((uint16_t) counterHighByte << 8) + counterLowByte;
 
-    return counterValue;
+    return (uint32_t) counterValue;
 }
 
-void TMR0_CounterSet(uint8_t counterValue)
-{
-    TMR0L = counterValue;
- }
-
-void TMR0_PeriodSet(uint8_t periodValue)
-{
-   TMR0H = periodValue;
+void TMR0_CounterSet(uint32_t counterValue) {
+    TMR0H = (uint8_t) (counterValue >> 8);
+    TMR0L = (uint8_t) (counterValue);
 }
 
-uint8_t TMR0_PeriodGet(void)
-{
-    return TMR0H;
+void TMR0_PeriodSet(uint32_t periodCount) {
+    tmr0PeriodCount = (65535U) - (uint16_t) periodCount;
+
+    TMR0H = (uint8_t) (tmr0PeriodCount >> 8);
+    TMR0L = (uint8_t) (tmr0PeriodCount);
 }
 
-uint8_t TMR0_MaxCountGet(void)
-{
-    return (255U);
+uint32_t TMR0_PeriodGet(void) {
+    return ((uint32_t) (65535U) - tmr0PeriodCount);
 }
 
-void TMR0_TMRInterruptEnable(void)
-{
-    PIE0bits.TMR0IE = 1;
+uint32_t TMR0_MaxCountGet(void) {
+    return (uint32_t) (65535U);
 }
 
-void TMR0_TMRInterruptDisable(void)
-{
-    PIE0bits.TMR0IE = 0;
-}
+void TMR0_ISR(void) {
+    TMR0H = (uint8_t) (tmr0PeriodCount >> 8);
+    TMR0L = (uint8_t) (tmr0PeriodCount);
 
-void TMR0_ISR(void)
-{
-    if(((void*)0) != TMR0_PeriodMatchCallback)
-    {
-        TMR0_PeriodMatchCallback();
+    if (((void*)0) != TMR0_OverflowCallback) {
+        TMR0_OverflowCallback();
     }
     PIR0bits.TMR0IF = 0;
 }
 
-void TMR0_PeriodMatchCallbackRegister(void (* callbackHandler)(void))
-{
-    TMR0_PeriodMatchCallback = callbackHandler;
+void TMR0_OverflowCallbackRegister(void (* callbackHandler)(void)) {
+    TMR0_OverflowCallback = callbackHandler;
 }
 
-static void TMR0_DefaultCallback(void)
-{
+static void TMR0_DefaultOverflowCallback(void) {
 
-        divider--;
+    divider--;
     if (divider == 0)
     {
         timerOverflow = 1;

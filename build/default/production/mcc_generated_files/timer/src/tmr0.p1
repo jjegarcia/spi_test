@@ -1,5 +1,53 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3664 `(v ~T0 @X0 0 tf ]
+[v F3646 `(v ~T0 @X0 0 tf ]
+[v F3648 `(v ~T0 @X0 0 tf ]
+[v F3650 `(v ~T0 @X0 0 tf ]
+[v F3652 `(v ~T0 @X0 0 tf ]
+[v F3654 `(v ~T0 @X0 0 tf1`ul ]
+[v F3657 `(ul ~T0 @X0 0 tf ]
+[v F3659 `(ul ~T0 @X0 0 tf ]
+[v F3661 `(v ~T0 @X0 0 tf1`ul ]
+[v F3664 `(ul ~T0 @X0 0 tf ]
+[v F3667 `(v ~T0 @X0 0 tf ]
+[v F3666 `(v ~T0 @X0 0 tf1`*F3667 ]
+[v F3670 `(v ~T0 @X0 0 tf ]
+"64 mcc_generated_files/timer/src/../timer_interface.h
+[; ;mcc_generated_files/timer/src/../timer_interface.h: 64: {
+[s S520 `*F3646 1 `*F3648 1 `*F3650 1 `*F3652 1 `*F3654 1 `*F3657 1 `*F3659 1 `*F3661 1 `*F3664 1 `*F3666 1 `*F3670 1 ]
+[n S520 TIMER_INTERFACE Initialize Deinitialize Start Stop PeriodSet PeriodGet CounterGet CounterSet MaxCountGet TimeoutCallbackRegister Tasks ]
+"151 mcc_generated_files/timer/src/../tmr0.h
+[; ;mcc_generated_files/timer/src/../tmr0.h: 151: void TMR0_Initialize(void);
+[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
+"159
+[; ;mcc_generated_files/timer/src/../tmr0.h: 159: void TMR0_Deinitialize(void);
+[v _TMR0_Deinitialize `(v ~T0 @X0 0 ef ]
+"168
+[; ;mcc_generated_files/timer/src/../tmr0.h: 168: void TMR0_Start(void);
+[v _TMR0_Start `(v ~T0 @X0 0 ef ]
+"177
+[; ;mcc_generated_files/timer/src/../tmr0.h: 177: void TMR0_Stop(void);
+[v _TMR0_Stop `(v ~T0 @X0 0 ef ]
+"204
+[; ;mcc_generated_files/timer/src/../tmr0.h: 204: void TMR0_PeriodSet(uint32_t periodCount);
+[v _TMR0_PeriodSet `(v ~T0 @X0 0 ef1`ul ]
+"213
+[; ;mcc_generated_files/timer/src/../tmr0.h: 213: uint32_t TMR0_PeriodGet(void);
+[v _TMR0_PeriodGet `(ul ~T0 @X0 0 ef ]
+"186
+[; ;mcc_generated_files/timer/src/../tmr0.h: 186: uint32_t TMR0_CounterGet(void);
+[v _TMR0_CounterGet `(ul ~T0 @X0 0 ef ]
+"195
+[; ;mcc_generated_files/timer/src/../tmr0.h: 195: void TMR0_CounterSet(uint32_t counterValue);
+[v _TMR0_CounterSet `(v ~T0 @X0 0 ef1`ul ]
+"221
+[; ;mcc_generated_files/timer/src/../tmr0.h: 221: uint32_t TMR0_MaxCountGet(void);
+[v _TMR0_MaxCountGet `(ul ~T0 @X0 0 ef ]
+[v F3685 `(v ~T0 @X0 0 tf ]
+"237
+[; ;mcc_generated_files/timer/src/../tmr0.h: 237: void TMR0_OverflowCallbackRegister(void (* CallbackHandler)(void));
+[v _TMR0_OverflowCallbackRegister `(v ~T0 @X0 0 ef1`*F3685 ]
+[v F3705 `(v ~T0 @X0 0 tf ]
+[v F3708 `(v ~T0 @X0 0 tf ]
 "4825 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 4825: extern volatile unsigned char TMR0H __attribute__((address(0x59D)));
 [v _TMR0H `Vuc ~T0 @X0 0 e@1437 ]
@@ -9,9 +57,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5203
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5203: extern volatile unsigned char T0CON1 __attribute__((address(0x59F)));
 [v _T0CON1 `Vuc ~T0 @X0 0 e@1439 ]
-"39 mcc_generated_files/timer/src/tmr0.c
-[; ;mcc_generated_files/timer/src/tmr0.c: 39: static void TMR0_DefaultCallback(void);
-[v _TMR0_DefaultCallback `(v ~T0 @X0 0 sf ]
+"54 mcc_generated_files/timer/src/tmr0.c
+[; ;mcc_generated_files/timer/src/tmr0.c: 54: static void TMR0_DefaultOverflowCallback(void);
+[v _TMR0_DefaultOverflowCallback `(v ~T0 @X0 0 sf ]
 "5351 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5351:     struct {
 [s S278 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -60,9 +108,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5113
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5113: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0x59E)));
 [v _T0CON0bits `VS267 ~T0 @X0 0 e@1438 ]
-[v F3683 `(v ~T0 @X0 0 tf ]
-[v F3685 `(v ~T0 @X0 0 tf ]
-[v F3687 `(v ~T0 @X0 0 tf ]
+[v F3727 `(v ~T0 @X0 0 tf ]
+[v F3729 `(v ~T0 @X0 0 tf ]
+[v F3731 `(v ~T0 @X0 0 tf ]
 "110 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 110: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -615,314 +663,302 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9826
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 9826: __asm("TOSH equ 01FEFh");
 [; <" TOSH equ 01FEFh ;# ">
-"267 mcc_generated_files/timer/src/../tmr0.h
-[; ;mcc_generated_files/timer/src/../tmr0.h: 267: _Bool timerOverflow;
+"241 mcc_generated_files/timer/src/../tmr0.h
+[; ;mcc_generated_files/timer/src/../tmr0.h: 241: _Bool timerOverflow = 0;
 [v _timerOverflow `a ~T0 @X0 1 e ]
-"268
-[; ;mcc_generated_files/timer/src/../tmr0.h: 268: uint16_t divider = 0xFFFF;
+[i _timerOverflow
+-> -> 0 `i `a
+]
+"242
+[; ;mcc_generated_files/timer/src/../tmr0.h: 242: uint16_t divider = 0xFFFF;
 [v _divider `us ~T0 @X0 1 e ]
 [i _divider
 -> -> 65535 `ui `us
 ]
 "38 mcc_generated_files/timer/src/tmr0.c
-[; ;mcc_generated_files/timer/src/tmr0.c: 38: static void (*TMR0_PeriodMatchCallback)(void);
-[v _TMR0_PeriodMatchCallback `*F3664 ~T0 @X0 1 s ]
-"45
-[; ;mcc_generated_files/timer/src/tmr0.c: 45: void TMR0_Initialize(void)
+[; ;mcc_generated_files/timer/src/tmr0.c: 38: const struct TIMER_INTERFACE Timer0 = {
+[v _Timer0 `CS520 ~T0 @X0 1 e ]
+[i _Timer0
+:U ..
+:U ..
+&U _TMR0_Initialize
+&U _TMR0_Deinitialize
+&U _TMR0_Start
+&U _TMR0_Stop
+&U _TMR0_PeriodSet
+&U _TMR0_PeriodGet
+&U _TMR0_CounterGet
+&U _TMR0_CounterSet
+&U _TMR0_MaxCountGet
+&U _TMR0_OverflowCallbackRegister
+-> -> -> 0 `i `*v `*F3705
+..
+..
+]
+"52
+[; ;mcc_generated_files/timer/src/tmr0.c: 52: static volatile uint16_t tmr0PeriodCount;
+[v _tmr0PeriodCount `Vus ~T0 @X0 1 s ]
+"53
+[; ;mcc_generated_files/timer/src/tmr0.c: 53: static void (*TMR0_OverflowCallback)(void);
+[v _TMR0_OverflowCallback `*F3708 ~T0 @X0 1 s ]
+"60
+[; ;mcc_generated_files/timer/src/tmr0.c: 60: void TMR0_Initialize(void) {
 [v _TMR0_Initialize `(v ~T0 @X0 1 ef ]
-"46
-[; ;mcc_generated_files/timer/src/tmr0.c: 46: {
 {
 [e :U _TMR0_Initialize ]
 [f ]
-"47
-[; ;mcc_generated_files/timer/src/tmr0.c: 47:     TMR0H = 0xFF;
+"61
+[; ;mcc_generated_files/timer/src/tmr0.c: 61:     TMR0H = 0xFF;
 [e = _TMR0H -> -> 255 `i `uc ]
-"48
-[; ;mcc_generated_files/timer/src/tmr0.c: 48:     TMR0L = 0x0;
-[e = _TMR0L -> -> 0 `i `uc ]
-"50
-[; ;mcc_generated_files/timer/src/tmr0.c: 50:     T0CON1 = (3 << 0x5)
-[e = _T0CON1 -> | | << -> 3 `i -> 5 `i << -> 0 `i -> 0 `i << -> 1 `i -> 4 `i `uc ]
-"54
-[; ;mcc_generated_files/timer/src/tmr0.c: 54:     TMR0_PeriodMatchCallback = TMR0_DefaultCallback;
-[e = _TMR0_PeriodMatchCallback &U _TMR0_DefaultCallback ]
-"56
-[; ;mcc_generated_files/timer/src/tmr0.c: 56:     PIR0bits.TMR0IF = 0;
-[e = . . _PIR0bits 0 3 -> -> 0 `i `uc ]
-"57
-[; ;mcc_generated_files/timer/src/tmr0.c: 57:     PIE0bits.TMR0IE = 1;
-[e = . . _PIE0bits 0 3 -> -> 1 `i `uc ]
-"59
-[; ;mcc_generated_files/timer/src/tmr0.c: 59:     T0CON0 = (0 << 0x0)
-[e = _T0CON0 -> | | << -> 0 `i -> 0 `i << -> 1 `i -> 7 `i << -> 0 `i -> 4 `i `uc ]
 "62
-[; ;mcc_generated_files/timer/src/tmr0.c: 62: }
-[e :UE 520 ]
-}
+[; ;mcc_generated_files/timer/src/tmr0.c: 62:     TMR0L = 0x0;
+[e = _TMR0L -> -> 0 `i `uc ]
 "64
-[; ;mcc_generated_files/timer/src/tmr0.c: 64: void TMR0_Deinitialize(void)
+[; ;mcc_generated_files/timer/src/tmr0.c: 64:     T0CON1 = (3 << 0x5)
+[e = _T0CON1 -> | | << -> 3 `i -> 5 `i << -> 0 `i -> 0 `i << -> 1 `i -> 4 `i `uc ]
+"68
+[; ;mcc_generated_files/timer/src/tmr0.c: 68:     tmr0PeriodCount = ((uint16_t) TMR0H << 8) | TMR0L;
+[e = _tmr0PeriodCount -> | << -> -> _TMR0H `us `ui -> 8 `i -> _TMR0L `ui `us ]
+"70
+[; ;mcc_generated_files/timer/src/tmr0.c: 70:     TMR0_OverflowCallback = TMR0_DefaultOverflowCallback;
+[e = _TMR0_OverflowCallback &U _TMR0_DefaultOverflowCallback ]
+"72
+[; ;mcc_generated_files/timer/src/tmr0.c: 72:     PIR0bits.TMR0IF = 0;
+[e = . . _PIR0bits 0 3 -> -> 0 `i `uc ]
+"73
+[; ;mcc_generated_files/timer/src/tmr0.c: 73:     PIE0bits.TMR0IE = 1;
+[e = . . _PIE0bits 0 3 -> -> 1 `i `uc ]
+"75
+[; ;mcc_generated_files/timer/src/tmr0.c: 75:     T0CON0 = (0 << 0x0)
+[e = _T0CON0 -> | | << -> 0 `i -> 0 `i << -> 1 `i -> 7 `i << -> 1 `i -> 4 `i `uc ]
+"78
+[; ;mcc_generated_files/timer/src/tmr0.c: 78: }
+[e :UE 521 ]
+}
+"80
+[; ;mcc_generated_files/timer/src/tmr0.c: 80: void TMR0_Deinitialize(void) {
 [v _TMR0_Deinitialize `(v ~T0 @X0 1 ef ]
-"65
-[; ;mcc_generated_files/timer/src/tmr0.c: 65: {
 {
 [e :U _TMR0_Deinitialize ]
 [f ]
-"66
-[; ;mcc_generated_files/timer/src/tmr0.c: 66:     T0CON0bits.T0EN = 0;
+"81
+[; ;mcc_generated_files/timer/src/tmr0.c: 81:     T0CON0bits.T0EN = 0;
 [e = . . _T0CON0bits 1 4 -> -> 0 `i `uc ]
-"68
-[; ;mcc_generated_files/timer/src/tmr0.c: 68:     PIR0bits.TMR0IF = 0;
+"83
+[; ;mcc_generated_files/timer/src/tmr0.c: 83:     PIR0bits.TMR0IF = 0;
 [e = . . _PIR0bits 0 3 -> -> 0 `i `uc ]
-"69
-[; ;mcc_generated_files/timer/src/tmr0.c: 69:     PIE0bits.TMR0IE = 0;
+"84
+[; ;mcc_generated_files/timer/src/tmr0.c: 84:     PIE0bits.TMR0IE = 0;
 [e = . . _PIE0bits 0 3 -> -> 0 `i `uc ]
-"71
-[; ;mcc_generated_files/timer/src/tmr0.c: 71:     T0CON0 = 0x0;
+"86
+[; ;mcc_generated_files/timer/src/tmr0.c: 86:     T0CON0 = 0x0;
 [e = _T0CON0 -> -> 0 `i `uc ]
-"72
-[; ;mcc_generated_files/timer/src/tmr0.c: 72:     T0CON1 = 0x0;
+"87
+[; ;mcc_generated_files/timer/src/tmr0.c: 87:     T0CON1 = 0x0;
 [e = _T0CON1 -> -> 0 `i `uc ]
-"73
-[; ;mcc_generated_files/timer/src/tmr0.c: 73:     TMR0H = 0xFF;
+"88
+[; ;mcc_generated_files/timer/src/tmr0.c: 88:     TMR0H = 0xFF;
 [e = _TMR0H -> -> 255 `i `uc ]
-"74
-[; ;mcc_generated_files/timer/src/tmr0.c: 74:     TMR0L =0x0;
+"89
+[; ;mcc_generated_files/timer/src/tmr0.c: 89:     TMR0L = 0x0;
 [e = _TMR0L -> -> 0 `i `uc ]
-"75
-[; ;mcc_generated_files/timer/src/tmr0.c: 75: }
-[e :UE 521 ]
+"90
+[; ;mcc_generated_files/timer/src/tmr0.c: 90: }
+[e :UE 522 ]
 }
-"77
-[; ;mcc_generated_files/timer/src/tmr0.c: 77: void TMR0_Start(void)
+"92
+[; ;mcc_generated_files/timer/src/tmr0.c: 92: void TMR0_Start(void) {
 [v _TMR0_Start `(v ~T0 @X0 1 ef ]
-"78
-[; ;mcc_generated_files/timer/src/tmr0.c: 78: {
 {
 [e :U _TMR0_Start ]
 [f ]
-"79
-[; ;mcc_generated_files/timer/src/tmr0.c: 79:     T0CON0bits.T0EN = 1;
+"93
+[; ;mcc_generated_files/timer/src/tmr0.c: 93:     T0CON0bits.T0EN = 1;
 [e = . . _T0CON0bits 1 4 -> -> 1 `i `uc ]
-"80
-[; ;mcc_generated_files/timer/src/tmr0.c: 80: }
-[e :UE 522 ]
+"94
+[; ;mcc_generated_files/timer/src/tmr0.c: 94: }
+[e :UE 523 ]
 }
-"82
-[; ;mcc_generated_files/timer/src/tmr0.c: 82: void TMR0_Stop(void)
+"96
+[; ;mcc_generated_files/timer/src/tmr0.c: 96: void TMR0_Stop(void) {
 [v _TMR0_Stop `(v ~T0 @X0 1 ef ]
-"83
-[; ;mcc_generated_files/timer/src/tmr0.c: 83: {
 {
 [e :U _TMR0_Stop ]
 [f ]
-"84
-[; ;mcc_generated_files/timer/src/tmr0.c: 84:     T0CON0bits.T0EN = 0;
+"97
+[; ;mcc_generated_files/timer/src/tmr0.c: 97:     T0CON0bits.T0EN = 0;
 [e = . . _T0CON0bits 1 4 -> -> 0 `i `uc ]
-"85
-[; ;mcc_generated_files/timer/src/tmr0.c: 85: }
-[e :UE 523 ]
+"98
+[; ;mcc_generated_files/timer/src/tmr0.c: 98: }
+[e :UE 524 ]
 }
-"87
-[; ;mcc_generated_files/timer/src/tmr0.c: 87: uint8_t TMR0_CounterGet(void)
-[v _TMR0_CounterGet `(uc ~T0 @X0 1 ef ]
-"88
-[; ;mcc_generated_files/timer/src/tmr0.c: 88: {
+"100
+[; ;mcc_generated_files/timer/src/tmr0.c: 100: uint32_t TMR0_CounterGet(void) {
+[v _TMR0_CounterGet `(ul ~T0 @X0 1 ef ]
 {
 [e :U _TMR0_CounterGet ]
 [f ]
-"89
-[; ;mcc_generated_files/timer/src/tmr0.c: 89:     uint8_t counterValue;
-[v _counterValue `uc ~T0 @X0 1 a ]
-"91
-[; ;mcc_generated_files/timer/src/tmr0.c: 91:     counterValue = TMR0L;
-[e = _counterValue _TMR0L ]
-"93
-[; ;mcc_generated_files/timer/src/tmr0.c: 93:     return counterValue;
-[e ) _counterValue ]
-[e $UE 524  ]
-"94
-[; ;mcc_generated_files/timer/src/tmr0.c: 94: }
-[e :UE 524 ]
-}
-"96
-[; ;mcc_generated_files/timer/src/tmr0.c: 96: void TMR0_CounterSet(uint8_t counterValue)
-[v _TMR0_CounterSet `(v ~T0 @X0 1 ef1`uc ]
-"97
-[; ;mcc_generated_files/timer/src/tmr0.c: 97: {
-{
-[e :U _TMR0_CounterSet ]
-"96
-[; ;mcc_generated_files/timer/src/tmr0.c: 96: void TMR0_CounterSet(uint8_t counterValue)
-[v _counterValue `uc ~T0 @X0 1 r1 ]
-"97
-[; ;mcc_generated_files/timer/src/tmr0.c: 97: {
-[f ]
-"98
-[; ;mcc_generated_files/timer/src/tmr0.c: 98:     TMR0L = counterValue;
-[e = _TMR0L _counterValue ]
-"99
-[; ;mcc_generated_files/timer/src/tmr0.c: 99:  }
+"101
+[; ;mcc_generated_files/timer/src/tmr0.c: 101:     uint16_t counterValue;
+[v _counterValue `us ~T0 @X0 1 a ]
+"102
+[; ;mcc_generated_files/timer/src/tmr0.c: 102:     uint8_t counterLowByte;
+[v _counterLowByte `uc ~T0 @X0 1 a ]
+"103
+[; ;mcc_generated_files/timer/src/tmr0.c: 103:     uint8_t counterHighByte;
+[v _counterHighByte `uc ~T0 @X0 1 a ]
+"105
+[; ;mcc_generated_files/timer/src/tmr0.c: 105:     counterLowByte = TMR0L;
+[e = _counterLowByte _TMR0L ]
+"106
+[; ;mcc_generated_files/timer/src/tmr0.c: 106:     counterHighByte = TMR0H;
+[e = _counterHighByte _TMR0H ]
+"107
+[; ;mcc_generated_files/timer/src/tmr0.c: 107:     counterValue = ((uint16_t) counterHighByte << 8) + counterLowByte;
+[e = _counterValue -> + << -> -> _counterHighByte `us `ui -> 8 `i -> _counterLowByte `ui `us ]
+"109
+[; ;mcc_generated_files/timer/src/tmr0.c: 109:     return (uint32_t) counterValue;
+[e ) -> _counterValue `ul ]
+[e $UE 525  ]
+"110
+[; ;mcc_generated_files/timer/src/tmr0.c: 110: }
 [e :UE 525 ]
 }
-"101
-[; ;mcc_generated_files/timer/src/tmr0.c: 101: void TMR0_PeriodSet(uint8_t periodValue)
-[v _TMR0_PeriodSet `(v ~T0 @X0 1 ef1`uc ]
-"102
-[; ;mcc_generated_files/timer/src/tmr0.c: 102: {
+"112
+[; ;mcc_generated_files/timer/src/tmr0.c: 112: void TMR0_CounterSet(uint32_t counterValue) {
+[v _TMR0_CounterSet `(v ~T0 @X0 1 ef1`ul ]
 {
-[e :U _TMR0_PeriodSet ]
-"101
-[; ;mcc_generated_files/timer/src/tmr0.c: 101: void TMR0_PeriodSet(uint8_t periodValue)
-[v _periodValue `uc ~T0 @X0 1 r1 ]
-"102
-[; ;mcc_generated_files/timer/src/tmr0.c: 102: {
+[e :U _TMR0_CounterSet ]
+[v _counterValue `ul ~T0 @X0 1 r1 ]
 [f ]
-"103
-[; ;mcc_generated_files/timer/src/tmr0.c: 103:    TMR0H = periodValue;
-[e = _TMR0H _periodValue ]
-"104
-[; ;mcc_generated_files/timer/src/tmr0.c: 104: }
+"113
+[; ;mcc_generated_files/timer/src/tmr0.c: 113:     TMR0H = (uint8_t) (counterValue >> 8);
+[e = _TMR0H -> >> _counterValue -> 8 `i `uc ]
+"114
+[; ;mcc_generated_files/timer/src/tmr0.c: 114:     TMR0L = (uint8_t) (counterValue);
+[e = _TMR0L -> _counterValue `uc ]
+"115
+[; ;mcc_generated_files/timer/src/tmr0.c: 115: }
 [e :UE 526 ]
 }
-"106
-[; ;mcc_generated_files/timer/src/tmr0.c: 106: uint8_t TMR0_PeriodGet(void)
-[v _TMR0_PeriodGet `(uc ~T0 @X0 1 ef ]
-"107
-[; ;mcc_generated_files/timer/src/tmr0.c: 107: {
+"117
+[; ;mcc_generated_files/timer/src/tmr0.c: 117: void TMR0_PeriodSet(uint32_t periodCount) {
+[v _TMR0_PeriodSet `(v ~T0 @X0 1 ef1`ul ]
+{
+[e :U _TMR0_PeriodSet ]
+[v _periodCount `ul ~T0 @X0 1 r1 ]
+[f ]
+"118
+[; ;mcc_generated_files/timer/src/tmr0.c: 118:     tmr0PeriodCount = (65535U) - (uint16_t) periodCount;
+[e = _tmr0PeriodCount -> - -> 65535 `ui -> -> _periodCount `us `ui `us ]
+"120
+[; ;mcc_generated_files/timer/src/tmr0.c: 120:     TMR0H = (uint8_t) (tmr0PeriodCount >> 8);
+[e = _TMR0H -> >> -> _tmr0PeriodCount `ui -> 8 `i `uc ]
+"121
+[; ;mcc_generated_files/timer/src/tmr0.c: 121:     TMR0L = (uint8_t) (tmr0PeriodCount);
+[e = _TMR0L -> _tmr0PeriodCount `uc ]
+"122
+[; ;mcc_generated_files/timer/src/tmr0.c: 122: }
+[e :UE 527 ]
+}
+"124
+[; ;mcc_generated_files/timer/src/tmr0.c: 124: uint32_t TMR0_PeriodGet(void) {
+[v _TMR0_PeriodGet `(ul ~T0 @X0 1 ef ]
 {
 [e :U _TMR0_PeriodGet ]
 [f ]
-"108
-[; ;mcc_generated_files/timer/src/tmr0.c: 108:     return TMR0H;
-[e ) _TMR0H ]
-[e $UE 527  ]
-"109
-[; ;mcc_generated_files/timer/src/tmr0.c: 109: }
-[e :UE 527 ]
+"125
+[; ;mcc_generated_files/timer/src/tmr0.c: 125:     return ((uint32_t) (65535U) - tmr0PeriodCount);
+[e ) - -> -> 65535 `ui `ul -> _tmr0PeriodCount `ul ]
+[e $UE 528  ]
+"126
+[; ;mcc_generated_files/timer/src/tmr0.c: 126: }
+[e :UE 528 ]
 }
-"111
-[; ;mcc_generated_files/timer/src/tmr0.c: 111: uint8_t TMR0_MaxCountGet(void)
-[v _TMR0_MaxCountGet `(uc ~T0 @X0 1 ef ]
-"112
-[; ;mcc_generated_files/timer/src/tmr0.c: 112: {
+"128
+[; ;mcc_generated_files/timer/src/tmr0.c: 128: uint32_t TMR0_MaxCountGet(void) {
+[v _TMR0_MaxCountGet `(ul ~T0 @X0 1 ef ]
 {
 [e :U _TMR0_MaxCountGet ]
 [f ]
-"113
-[; ;mcc_generated_files/timer/src/tmr0.c: 113:     return (255U);
-[e ) -> -> 255 `ui `uc ]
-[e $UE 528  ]
-"114
-[; ;mcc_generated_files/timer/src/tmr0.c: 114: }
-[e :UE 528 ]
-}
-"116
-[; ;mcc_generated_files/timer/src/tmr0.c: 116: void TMR0_TMRInterruptEnable(void)
-[v _TMR0_TMRInterruptEnable `(v ~T0 @X0 1 ef ]
-"117
-[; ;mcc_generated_files/timer/src/tmr0.c: 117: {
-{
-[e :U _TMR0_TMRInterruptEnable ]
-[f ]
-"118
-[; ;mcc_generated_files/timer/src/tmr0.c: 118:     PIE0bits.TMR0IE = 1;
-[e = . . _PIE0bits 0 3 -> -> 1 `i `uc ]
-"119
-[; ;mcc_generated_files/timer/src/tmr0.c: 119: }
+"129
+[; ;mcc_generated_files/timer/src/tmr0.c: 129:     return (uint32_t) (65535U);
+[e ) -> -> 65535 `ui `ul ]
+[e $UE 529  ]
+"130
+[; ;mcc_generated_files/timer/src/tmr0.c: 130: }
 [e :UE 529 ]
 }
-"121
-[; ;mcc_generated_files/timer/src/tmr0.c: 121: void TMR0_TMRInterruptDisable(void)
-[v _TMR0_TMRInterruptDisable `(v ~T0 @X0 1 ef ]
-"122
-[; ;mcc_generated_files/timer/src/tmr0.c: 122: {
-{
-[e :U _TMR0_TMRInterruptDisable ]
-[f ]
-"123
-[; ;mcc_generated_files/timer/src/tmr0.c: 123:     PIE0bits.TMR0IE = 0;
-[e = . . _PIE0bits 0 3 -> -> 0 `i `uc ]
-"124
-[; ;mcc_generated_files/timer/src/tmr0.c: 124: }
-[e :UE 530 ]
-}
-"126
-[; ;mcc_generated_files/timer/src/tmr0.c: 126: void TMR0_ISR(void)
+"132
+[; ;mcc_generated_files/timer/src/tmr0.c: 132: void TMR0_ISR(void) {
 [v _TMR0_ISR `(v ~T0 @X0 1 ef ]
-"127
-[; ;mcc_generated_files/timer/src/tmr0.c: 127: {
 {
 [e :U _TMR0_ISR ]
 [f ]
-"128
-[; ;mcc_generated_files/timer/src/tmr0.c: 128:     if(((void*)0) != TMR0_PeriodMatchCallback)
-[e $ ! != -> -> -> 0 `i `*v `*F3683 _TMR0_PeriodMatchCallback 532  ]
-"129
-[; ;mcc_generated_files/timer/src/tmr0.c: 129:     {
-{
-"130
-[; ;mcc_generated_files/timer/src/tmr0.c: 130:         TMR0_PeriodMatchCallback();
-[e ( *U _TMR0_PeriodMatchCallback ..  ]
-"131
-[; ;mcc_generated_files/timer/src/tmr0.c: 131:     }
-}
-[e :U 532 ]
-"132
-[; ;mcc_generated_files/timer/src/tmr0.c: 132:     PIR0bits.TMR0IF = 0;
-[e = . . _PIR0bits 0 3 -> -> 0 `i `uc ]
 "133
-[; ;mcc_generated_files/timer/src/tmr0.c: 133: }
-[e :UE 531 ]
-}
-"135
-[; ;mcc_generated_files/timer/src/tmr0.c: 135: void TMR0_PeriodMatchCallbackRegister(void (* callbackHandler)(void))
-[v _TMR0_PeriodMatchCallbackRegister `(v ~T0 @X0 1 ef1`*F3685 ]
+[; ;mcc_generated_files/timer/src/tmr0.c: 133:     TMR0H = (uint8_t) (tmr0PeriodCount >> 8);
+[e = _TMR0H -> >> -> _tmr0PeriodCount `ui -> 8 `i `uc ]
+"134
+[; ;mcc_generated_files/timer/src/tmr0.c: 134:     TMR0L = (uint8_t) (tmr0PeriodCount);
+[e = _TMR0L -> _tmr0PeriodCount `uc ]
 "136
-[; ;mcc_generated_files/timer/src/tmr0.c: 136: {
+[; ;mcc_generated_files/timer/src/tmr0.c: 136:     if (((void*)0) != TMR0_OverflowCallback) {
+[e $ ! != -> -> -> 0 `i `*v `*F3727 _TMR0_OverflowCallback 531  ]
 {
-[e :U _TMR0_PeriodMatchCallbackRegister ]
-"135
-[; ;mcc_generated_files/timer/src/tmr0.c: 135: void TMR0_PeriodMatchCallbackRegister(void (* callbackHandler)(void))
-[v _callbackHandler `*F3687 ~T0 @X0 1 r1 ]
-"136
-[; ;mcc_generated_files/timer/src/tmr0.c: 136: {
-[f ]
 "137
-[; ;mcc_generated_files/timer/src/tmr0.c: 137:     TMR0_PeriodMatchCallback = callbackHandler;
-[e = _TMR0_PeriodMatchCallback _callbackHandler ]
+[; ;mcc_generated_files/timer/src/tmr0.c: 137:         TMR0_OverflowCallback();
+[e ( *U _TMR0_OverflowCallback ..  ]
 "138
-[; ;mcc_generated_files/timer/src/tmr0.c: 138: }
-[e :UE 533 ]
+[; ;mcc_generated_files/timer/src/tmr0.c: 138:     }
 }
+[e :U 531 ]
+"139
+[; ;mcc_generated_files/timer/src/tmr0.c: 139:     PIR0bits.TMR0IF = 0;
+[e = . . _PIR0bits 0 3 -> -> 0 `i `uc ]
 "140
-[; ;mcc_generated_files/timer/src/tmr0.c: 140: static void TMR0_DefaultCallback(void)
-[v _TMR0_DefaultCallback `(v ~T0 @X0 1 sf ]
-"141
-[; ;mcc_generated_files/timer/src/tmr0.c: 141: {
+[; ;mcc_generated_files/timer/src/tmr0.c: 140: }
+[e :UE 530 ]
+}
+"142
+[; ;mcc_generated_files/timer/src/tmr0.c: 142: void TMR0_OverflowCallbackRegister(void (* callbackHandler)(void)) {
+[v _TMR0_OverflowCallbackRegister `(v ~T0 @X0 1 ef1`*F3729 ]
 {
-[e :U _TMR0_DefaultCallback ]
+[e :U _TMR0_OverflowCallbackRegister ]
+[v _callbackHandler `*F3731 ~T0 @X0 1 r1 ]
 [f ]
 "143
-[; ;mcc_generated_files/timer/src/tmr0.c: 143:         divider--;
-[e -- _divider -> -> 1 `i `us ]
+[; ;mcc_generated_files/timer/src/tmr0.c: 143:     TMR0_OverflowCallback = callbackHandler;
+[e = _TMR0_OverflowCallback _callbackHandler ]
 "144
-[; ;mcc_generated_files/timer/src/tmr0.c: 144:     if (divider == 0)
-[e $ ! == -> _divider `ui -> -> 0 `i `ui 535  ]
-"145
-[; ;mcc_generated_files/timer/src/tmr0.c: 145:     {
-{
-"146
-[; ;mcc_generated_files/timer/src/tmr0.c: 146:         timerOverflow = 1;
-[e = _timerOverflow -> -> 1 `i `a ]
-"147
-[; ;mcc_generated_files/timer/src/tmr0.c: 147:         divider = 0xFFFF;
-[e = _divider -> -> 65535 `ui `us ]
-"148
-[; ;mcc_generated_files/timer/src/tmr0.c: 148:     }
+[; ;mcc_generated_files/timer/src/tmr0.c: 144: }
+[e :UE 532 ]
 }
-[e :U 535 ]
+"146
+[; ;mcc_generated_files/timer/src/tmr0.c: 146: static void TMR0_DefaultOverflowCallback(void) {
+[v _TMR0_DefaultOverflowCallback `(v ~T0 @X0 1 sf ]
+{
+[e :U _TMR0_DefaultOverflowCallback ]
+[f ]
+"148
+[; ;mcc_generated_files/timer/src/tmr0.c: 148:     divider--;
+[e -- _divider -> -> 1 `i `us ]
 "149
-[; ;mcc_generated_files/timer/src/tmr0.c: 149: }
-[e :UE 534 ]
+[; ;mcc_generated_files/timer/src/tmr0.c: 149:     if (divider == 0)
+[e $ ! == -> _divider `ui -> -> 0 `i `ui 534  ]
+"150
+[; ;mcc_generated_files/timer/src/tmr0.c: 150:     {
+{
+"151
+[; ;mcc_generated_files/timer/src/tmr0.c: 151:         timerOverflow = 1;
+[e = _timerOverflow -> -> 1 `i `a ]
+"152
+[; ;mcc_generated_files/timer/src/tmr0.c: 152:         divider = 0xFFFF;
+[e = _divider -> -> 65535 `ui `us ]
+"153
+[; ;mcc_generated_files/timer/src/tmr0.c: 153:     }
+}
+[e :U 534 ]
+"154
+[; ;mcc_generated_files/timer/src/tmr0.c: 154: }
+[e :UE 533 ]
 }

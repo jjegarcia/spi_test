@@ -8,5 +8,5 @@ mcc_generated_files/system/src/../../system/../system/pins.h  \
 mcc_generated_files/system/src/../../system/../spi/mssp1.h  \
 mcc_generated_files/system/src/../../system/../spi/spi_interface.h  \
 mcc_generated_files/system/src/../../system/../system/interrupt.h  \
-mcc_generated_files/system/src/../../timer/tmr0.h  \
-mcc_generated_files/system/src/../../timer/tmr0_deprecated.h 
+mcc_generated_files/system/src/../../system/../timer/tmr0.h  \
+mcc_generated_files/system/src/../../system/../timer/timer_interface.h 
