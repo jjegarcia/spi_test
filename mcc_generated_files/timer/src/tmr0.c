@@ -140,4 +140,10 @@ void TMR0_PeriodMatchCallbackRegister(void (* callbackHandler)(void))
 static void TMR0_DefaultCallback(void)
 {
     // Default callback
+        divider--;
+    if (divider == 0) 
+    {
+        timerOverflow = true;
+        divider = DIVIDER;
+    }
 }

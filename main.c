@@ -33,32 +33,58 @@
     THIS SOFTWARE.
 */
 #include "mcc_generated_files/system/system.h"
-
+#include "mcc_generated_files/timer/tmr0.h"
+#include"mcc_generated_files/system/interrupt.h"
 /*
     Main application
 */
 
-int main(void)
-{
+bool led_state = false;
+void toggle_led(void);
+void spi_send_data(uint8_t data);
+
+int main(void) {
     SYSTEM_Initialize();
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts 
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts 
     // Use the following macros to: 
 
     // Enable the Global Interrupts 
-    //INTERRUPT_GlobalInterruptEnable(); 
+    INTERRUPT_GlobalInterruptEnable();
 
     // Disable the Global Interrupts 
     //INTERRUPT_GlobalInterruptDisable(); 
 
     // Enable the Peripheral Interrupts 
-    //INTERRUPT_PeripheralInterruptEnable(); 
+    INTERRUPT_PeripheralInterruptEnable();
+    
+    TMR0_Initialize();
 
     // Disable the Peripheral Interrupts 
     //INTERRUPT_PeripheralInterruptDisable(); 
+    pushed= false;
+    timerOverflow=false;
+    
 
+    while (1) {
+        if (timerOverflow) {
+            toggle_led();
+            timerOverflow = false;
+        }
+        if (pushed) {
+            spi_send_data(0x33);
+            pushed = false;
+        }
+    }
+}
 
-    while(1)
-    {
-    }    
+void toggle_led(void) {
+    led_state = ~led_state;
+    LATAbits.LATA2 = led_state;
+}
+
+void spi_send_data(uint8_t data) {
+    if (SPI1_Open(0)) {
+        SPI1_ByteWrite(data);
+    }
 }

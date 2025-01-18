@@ -72,7 +72,7 @@
         <targetDevice>PIC16F15244</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>nEdbgTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>3</platform>
@@ -210,6 +210,9 @@
         <property key="user-pack-device-support" value=""/>
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>
+      <nEdbgTool>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
+      </nEdbgTool>
     </conf>
   </confs>
 </configurationDescriptor>

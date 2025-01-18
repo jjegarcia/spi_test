@@ -262,5 +262,9 @@ void TMR0_ISR(void);
  * @return None.
  */
 void TMR0_PeriodMatchCallbackRegister(void (* CallbackHandler)(void));
+#define DIVIDER 0xFFFF
+
+bool timerOverflow; 
+uint16_t divider = DIVIDER;
 
 #endif //TMR0_H

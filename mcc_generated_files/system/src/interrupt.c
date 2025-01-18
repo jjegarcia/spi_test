@@ -34,6 +34,7 @@
 #include "../../system/interrupt.h"
 #include "../../system/system.h"
 #include "../pins.h"
+#include "../../timer/tmr0.h"
 
 void (*INT_InterruptHandler)(void);
 
@@ -56,15 +57,19 @@ void  INTERRUPT_Initialize (void)
  * @param None.
  * @return None.
  */
-void __interrupt() INTERRUPT_InterruptManager (void)
-{
+void __interrupt() INTERRUPT_InterruptManager(void) {
     // interrupt handler
-    if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
-    {
+    if (PIE0bits.INTE == 1 && PIR0bits.INTF == 1) {
         INT_ISR();
+    } else if (INTCONbits.PEIE == 1) {
+        if (PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1) {
+            TMR0_ISR();
+        }
+        else {
+            //Unhandled Interrupt
+        }
     }
-    else
-    {
+    else {
         //Unhandled Interrupt
     }
 }
@@ -94,6 +99,7 @@ void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
 void INT_DefaultInterruptHandler(void){
     // add your INT interrupt custom code
     // or set custom function using INT_SetInterruptHandler()
+        pushed = true;
 }
 /**
  End of File

@@ -6333,33 +6333,149 @@ _Bool SPI1_IsTxReady(void);
 # 44 "./mcc_generated_files/system/system.h" 2
 
 # 1 "./mcc_generated_files/system/../system/interrupt.h" 1
-# 85 "./mcc_generated_files/system/../system/interrupt.h"
+# 86 "./mcc_generated_files/system/../system/interrupt.h"
 void INTERRUPT_Initialize (void);
-# 139 "./mcc_generated_files/system/../system/interrupt.h"
+# 140 "./mcc_generated_files/system/../system/interrupt.h"
 void INT_ISR(void);
-# 148 "./mcc_generated_files/system/../system/interrupt.h"
+# 149 "./mcc_generated_files/system/../system/interrupt.h"
 void INT_CallBack(void);
-# 157 "./mcc_generated_files/system/../system/interrupt.h"
+# 158 "./mcc_generated_files/system/../system/interrupt.h"
 void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-# 166 "./mcc_generated_files/system/../system/interrupt.h"
+# 167 "./mcc_generated_files/system/../system/interrupt.h"
 extern void (*INT_InterruptHandler)(void);
-# 175 "./mcc_generated_files/system/../system/interrupt.h"
+# 176 "./mcc_generated_files/system/../system/interrupt.h"
 void INT_DefaultInterruptHandler(void);
+_Bool pushed;
 # 45 "./mcc_generated_files/system/system.h" 2
 # 54 "./mcc_generated_files/system/system.h"
 void SYSTEM_Initialize(void);
 # 35 "main.c" 2
 
+# 1 "./mcc_generated_files/timer/tmr0.h" 1
+# 40 "./mcc_generated_files/timer/tmr0.h"
+# 1 "./mcc_generated_files/timer/tmr0_deprecated.h" 1
+# 40 "./mcc_generated_files/timer/tmr0.h" 2
+# 162 "./mcc_generated_files/timer/tmr0.h"
+void TMR0_Initialize(void);
 
 
 
 
 
-int main(void)
-{
+
+
+void TMR0_Deinitialize(void);
+# 179 "./mcc_generated_files/timer/tmr0.h"
+void TMR0_Start(void);
+# 188 "./mcc_generated_files/timer/tmr0.h"
+void TMR0_Stop(void);
+# 197 "./mcc_generated_files/timer/tmr0.h"
+uint8_t TMR0_CounterGet(void);
+# 206 "./mcc_generated_files/timer/tmr0.h"
+void TMR0_CounterSet(uint8_t counterValue);
+# 215 "./mcc_generated_files/timer/tmr0.h"
+void TMR0_PeriodSet(uint8_t periodCount);
+# 224 "./mcc_generated_files/timer/tmr0.h"
+uint8_t TMR0_PeriodGet(void);
+
+
+
+
+
+
+
+uint8_t TMR0_MaxCountGet(void);
+
+
+
+
+
+
+
+void TMR0_TMRInterruptEnable(void);
+
+
+
+
+
+
+
+void TMR0_TMRInterruptDisable(void);
+
+
+
+
+
+
+
+void TMR0_ISR(void);
+
+
+
+
+
+
+
+void TMR0_PeriodMatchCallbackRegister(void (* CallbackHandler)(void));
+
+
+_Bool timerOverflow;
+uint16_t divider = 0xFFFF;
+# 36 "main.c" 2
+
+# 1 "./mcc_generated_files/system/interrupt.h" 1
+# 37 "main.c" 2
+
+
+
+
+
+_Bool led_state = 0;
+void toggle_led(void);
+void spi_send_data(uint8_t data);
+
+int main(void) {
     SYSTEM_Initialize();
-# 61 "main.c"
-    while(1)
-    {
+
+
+
+
+
+    (INTCONbits.GIE = 1);
+
+
+
+
+
+    (INTCONbits.PEIE = 1);
+
+    TMR0_Initialize();
+
+
+
+    pushed= 0;
+    timerOverflow=0;
+
+
+    while (1) {
+        if (timerOverflow) {
+            toggle_led();
+            timerOverflow = 0;
+        }
+        if (pushed) {
+            spi_send_data(0x33);
+            pushed = 0;
+        }
+    }
+}
+
+void toggle_led(void) {
+    led_state = ~led_state;
+    LATAbits.LATA2 = led_state;
+}
+
+void spi_send_data(uint8_t data) {
+    if (SPI1_Open(0)) {
+        SPI1_ByteWrite(data);
     }
 }

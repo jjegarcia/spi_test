@@ -30,6 +30,7 @@
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
 */
+#include <stdbool.h>
 
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
@@ -173,7 +174,7 @@ extern void (*INT_InterruptHandler)(void);
  * @return None.
  */
 void INT_DefaultInterruptHandler(void);
-
+bool pushed;
 #endif  // INTERRUPT_H
 /**
  End of File
