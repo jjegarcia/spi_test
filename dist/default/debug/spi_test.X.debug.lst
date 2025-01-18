@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.50 build 20240725155939 
-                                                                                               Sat Jan 18 14:14:36 2025
+                                                                                               Sat Jan 18 14:22:19 2025
 
 Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1 
      1                           	processor	16F15244
@@ -2696,12 +2696,12 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2674                           ; Regs used in _INTERRUPT_Initialize: [wreg+status,2+status,0+pclath+cstack]
   2675                           
   2676                           
-  2677                           ;mcc_generated_files/system/src/interrupt.c: 45:     (PIR0bits.INTF = 0);
+  2677                           ;mcc_generated_files/system/src/interrupt.c: 45:         (PIR0bits.INTF = 0);
   2678     0199  014E               	movlb	14	; select bank14
   2679     019A  100C               	bcf	12,0	;volatile
   2680                           
-  2681                           ;mcc_generated_files/system/src/interrupt.c: 46:     (INTCONbits.INTEDG = 1);
-  2682     019B  140B               	bsf	11,0	;volatile
+  2681                           ;mcc_generated_files/system/src/interrupt.c: 46:     (INTCONbits.INTEDG = 0);
+  2682     019B  100B               	bcf	11,0	;volatile
   2683     019C                     l1182:
   2684                           
   2685                           ;mcc_generated_files/system/src/interrupt.c: 48:     INT_SetInterruptHandler(INT_Default
@@ -2724,7 +2724,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2701     01C6                     __ptext11:	
   2702 ;; *************** function _INT_SetInterruptHandler *****************
   2703 ;; Defined at:
-  2704 ;;		line 95 in file "mcc_generated_files/system/src/interrupt.c"
+  2704 ;;		line 101 in file "mcc_generated_files/system/src/interrupt.c"
   2705 ;; Parameters:    Size  Location     Type
   2706 ;;  InterruptHan    2    0[COMMON] PTR FTN()void 
   2707 ;;		 -> INT_DefaultInterruptHandler(1), 
@@ -2761,8 +2761,8 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2738                           ; Regs used in _INT_SetInterruptHandler: [wreg]
   2739                           
   2740                           
-  2741                           ;mcc_generated_files/system/src/interrupt.c: 96:     INT_InterruptHandler = InterruptHan
-      +                          dler;
+  2741                           ;mcc_generated_files/system/src/interrupt.c: 102:     INT_InterruptHandler = InterruptHa
+      +                          ndler;
   2742     01C6  0871               	movf	INT_SetInterruptHandler@InterruptHandler+1,w
   2743     01C7  0140               	movlb	0	; select bank0
   2744     01C8  00A3               	movwf	_INT_InterruptHandler+1
@@ -2831,7 +2831,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2807     0004                     __pintentry:	
   2808 ;; *************** function _INTERRUPT_InterruptManager *****************
   2809 ;; Defined at:
-  2810 ;;		line 60 in file "mcc_generated_files/system/src/interrupt.c"
+  2810 ;;		line 66 in file "mcc_generated_files/system/src/interrupt.c"
   2811 ;; Parameters:    Size  Location     Type
   2812 ;;		None
   2813 ;; Auto vars:     Size  Location     Type
@@ -2869,7 +2869,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2845     0005  3180               	pagesel	$
   2846     0006                     i1l1248:
   2847                           
-  2848                           ;mcc_generated_files/system/src/interrupt.c: 62:     if (PIE0bits.INTE == 1 && PIR0bits.
+  2848                           ;mcc_generated_files/system/src/interrupt.c: 68:     if (PIE0bits.INTE == 1 && PIR0bits.
       +                          INTF == 1) {
   2849     0006  014E               	movlb	14	; select bank14
   2850     0007  1C16               	btfss	22,0	;volatile
@@ -2887,10 +2887,10 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2862     000F                     u39_20:
   2863     000F                     i1l1252:
   2864                           
-  2865                           ;mcc_generated_files/system/src/interrupt.c: 63:         INT_ISR();
+  2865                           ;mcc_generated_files/system/src/interrupt.c: 69:         INT_ISR();
   2866     000F  3181  21D2  3180   	fcall	_INT_ISR
   2867                           
-  2868                           ;mcc_generated_files/system/src/interrupt.c: 64:     } else if (INTCONbits.PEIE == 1) {
+  2868                           ;mcc_generated_files/system/src/interrupt.c: 70:     } else if (INTCONbits.PEIE == 1) {
   2869     0012  2823               	goto	i1l38
   2870     0013                     i1l32:
   2871     0013  1F0B               	btfss	11,6	;volatile
@@ -2901,7 +2901,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2876     0017                     u40_20:
   2877     0017                     i1l1254:
   2878                           
-  2879                           ;mcc_generated_files/system/src/interrupt.c: 65:         if (PIE0bits.TMR0IE == 1 && PIR
+  2879                           ;mcc_generated_files/system/src/interrupt.c: 71:         if (PIE0bits.TMR0IE == 1 && PIR
       +                          0bits.TMR0IF == 1) {
   2880     0017  1E96               	btfss	22,5	;volatile
   2881     0018  281A               	goto	u41_21
@@ -2918,13 +2918,13 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   2892     001F                     u42_20:
   2893     001F                     i1l1258:
   2894                           
-  2895                           ;mcc_generated_files/system/src/interrupt.c: 66:             TMR0_ISR();
+  2895                           ;mcc_generated_files/system/src/interrupt.c: 72:             TMR0_ISR();
   2896     001F  3181  217D  3180   	fcall	_TMR0_ISR
   2897                           
-  2898                           ;mcc_generated_files/system/src/interrupt.c: 67:         }
+  2898                           ;mcc_generated_files/system/src/interrupt.c: 73:         }
   2899     0022  2823               	goto	i1l38
   2900     0023                     i1l37:	
-  2901                           ;mcc_generated_files/system/src/interrupt.c: 74:     }
+  2901                           ;mcc_generated_files/system/src/interrupt.c: 80:     }
   2902                           
   2903     0023                     i1l38:
   2904     0023  107E               	bcf	int$flags,0	;clear compiler interrupt flag (level 1)
@@ -3079,7 +3079,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   3050     01D2                     __ptext16:	
   3051 ;; *************** function _INT_ISR *****************
   3052 ;; Defined at:
-  3053 ;;		line 77 in file "mcc_generated_files/system/src/interrupt.c"
+  3053 ;;		line 83 in file "mcc_generated_files/system/src/interrupt.c"
   3054 ;; Parameters:    Size  Location     Type
   3055 ;;		None
   3056 ;; Auto vars:     Size  Location     Type
@@ -3115,12 +3115,12 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   3086                           ; Regs used in _INT_ISR: [wreg+status,2+status,0+pclath+cstack]
   3087                           
   3088                           
-  3089                           ;mcc_generated_files/system/src/interrupt.c: 79:     (PIR0bits.INTF = 0);
+  3089                           ;mcc_generated_files/system/src/interrupt.c: 85:     (PIR0bits.INTF = 0);
   3090     01D2  014E               	movlb	14	; select bank14
   3091     01D3  100C               	bcf	12,0	;volatile
   3092     01D4                     i1l1218:
   3093                           
-  3094                           ;mcc_generated_files/system/src/interrupt.c: 82:     INT_CallBack();
+  3094                           ;mcc_generated_files/system/src/interrupt.c: 88:     INT_CallBack();
   3095     01D4  3181  21A6  3181   	fcall	_INT_CallBack
   3096     01D7                     i1l41:
   3097     01D7  0008               	return
@@ -3130,7 +3130,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   3101     01A6                     __ptext17:	
   3102 ;; *************** function _INT_CallBack *****************
   3103 ;; Defined at:
-  3104 ;;		line 86 in file "mcc_generated_files/system/src/interrupt.c"
+  3104 ;;		line 92 in file "mcc_generated_files/system/src/interrupt.c"
   3105 ;; Parameters:    Size  Location     Type
   3106 ;;		None
   3107 ;; Auto vars:     Size  Location     Type
@@ -3167,7 +3167,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   3138                           ; Regs used in _INT_CallBack: [wreg+status,2+status,0+pclath+cstack]
   3139                           
   3140                           
-  3141                           ;mcc_generated_files/system/src/interrupt.c: 89:     if(INT_InterruptHandler)
+  3141                           ;mcc_generated_files/system/src/interrupt.c: 95:     if(INT_InterruptHandler)
   3142     01A6  0140               	movlb	0	; select bank0
   3143     01A7  0822               	movf	_INT_InterruptHandler,w
   3144     01A8  0423               	iorwf	_INT_InterruptHandler+1,w
@@ -3179,8 +3179,8 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   3150     01AD                     u33_20:
   3151     01AD                     i1l1188:
   3152                           
-  3153                           ;mcc_generated_files/system/src/interrupt.c: 90:     {;mcc_generated_files/system/src/in
-      +                          terrupt.c: 91:         INT_InterruptHandler();
+  3153                           ;mcc_generated_files/system/src/interrupt.c: 96:     {;mcc_generated_files/system/src/in
+      +                          terrupt.c: 97:         INT_InterruptHandler();
   3154     01AD  0823               	movf	_INT_InterruptHandler+1,w
   3155     01AE  008A               	movwf	10
   3156     01AF  0822               	movf	_INT_InterruptHandler,w
@@ -3194,7 +3194,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   3164     01DC                     __ptext18:	
   3165 ;; *************** function _INT_DefaultInterruptHandler *****************
   3166 ;; Defined at:
-  3167 ;;		line 99 in file "mcc_generated_files/system/src/interrupt.c"
+  3167 ;;		line 105 in file "mcc_generated_files/system/src/interrupt.c"
   3168 ;; Parameters:    Size  Location     Type
   3169 ;;		None
   3170 ;; Auto vars:     Size  Location     Type
@@ -3230,7 +3230,7 @@ Microchip MPLAB XC8 C Compiler v2.50 (Free license) build 20240725155939 Og1
   3200                           ; Regs used in _INT_DefaultInterruptHandler: []
   3201                           
   3202                           
-  3203                           ;mcc_generated_files/system/src/interrupt.c: 102:         pushed = 1;
+  3203                           ;mcc_generated_files/system/src/interrupt.c: 108:         pushed = 1;
   3204     01DC  3001               	movlw	1
   3205     01DD  00FD               	movwf	_pushed
   3206     01DE                     i1l51:
@@ -3615,7 +3615,7 @@ DATA                 0      0      20      0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.50 build 20240725155939 
-Symbol Table                                                                                   Sat Jan 18 14:14:36 2025
+Symbol Table                                                                                   Sat Jan 18 14:22:19 2025
 
                       _SPI1_ByteExchange 0000                           ?_spi_send_data 0070  
                                      l27 01A5                                       l48 01CB  

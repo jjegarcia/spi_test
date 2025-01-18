@@ -6435,14 +6435,20 @@ void INTERRUPT_Initialize (void)
 {
 
 
-    (PIR0bits.INTF = 0);
-    (INTCONbits.INTEDG = 1);
+        (PIR0bits.INTF = 0);
+    (INTCONbits.INTEDG = 0);
 
     INT_SetInterruptHandler(INT_DefaultInterruptHandler);
     (PIE0bits.INTE = 1);
 
+
+
+
+
+
+
 }
-# 60 "mcc_generated_files/system/src/interrupt.c"
+# 66 "mcc_generated_files/system/src/interrupt.c"
 void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager(void) {
 
     if (PIE0bits.INTE == 1 && PIR0bits.INTF == 1) {
