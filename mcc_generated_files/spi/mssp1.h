@@ -113,6 +113,9 @@ extern const struct SPI_INTERFACE SPI1_Client;
  * and is used by the function to set SPI parameters as specified by the configuration.
  */
 typedef enum {
+    CLIENT_CONFIG_M0,
+    CLIENT_CONFIG_M1,
+    CLIENT_CONFIG_M2,
     CLIENT_CONFIG,
     MSSP1_DEFAULT
 } spi1_configuration_name_t;

@@ -1,0 +1,385 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F15244 ]
+[d frameptr 6 ]
+"10 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"46 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\main.c
+[v _main main `(i  1 e 2 0 ]
+"79
+[v _toggle_led toggle_led `(v  1 e 1 0 ]
+"84
+[v _spi_send_data spi_send_data `(v  1 e 1 0 ]
+"60 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/spi/src/mssp1.c
+[v _SPI1_Initialize SPI1_Initialize `(v  1 e 1 0 ]
+"72
+[v _SPI1_Deinitialize SPI1_Deinitialize `(v  1 e 1 0 ]
+"81
+[v _SPI1_Open SPI1_Open `(a  1 e 1 0 ]
+"102
+[v _SPI1_Close SPI1_Close `(v  1 e 1 0 ]
+"107
+[v _SPI1_BufferExchange SPI1_BufferExchange `(v  1 e 1 0 ]
+"125
+[v _SPI1_BufferWrite SPI1_BufferWrite `(v  1 e 1 0 ]
+"142
+[v _SPI1_BufferRead SPI1_BufferRead `(v  1 e 1 0 ]
+"160
+[v _SPI1_ByteExchange SPI1_ByteExchange `(uc  1 e 1 0 ]
+"171
+[v _SPI1_ByteWrite SPI1_ByteWrite `(v  1 e 1 0 ]
+"176
+[v _SPI1_ByteRead SPI1_ByteRead `(uc  1 e 1 0 ]
+"185
+[v _SPI1_IsRxReady SPI1_IsRxReady `(a  1 e 1 0 ]
+"199
+[v _SPI1_IsTxReady SPI1_IsTxReady `(a  1 e 1 0 ]
+"39 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/clock.c
+[v _CLOCK_Initialize CLOCK_Initialize `(v  1 e 1 0 ]
+"41 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/interrupt.c
+[v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
+"60
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+"77
+[v _INT_ISR INT_ISR `(v  1 e 1 0 ]
+"86
+[v _INT_CallBack INT_CallBack `(v  1 e 1 0 ]
+"95
+[v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
+"99
+[v _INT_DefaultInterruptHandler INT_DefaultInterruptHandler `(v  1 e 1 0 ]
+"38 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/pins.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"40 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/system.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"126 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/timer/src/tmr0.c
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+"140
+[v _TMR0_DefaultCallback TMR0_DefaultCallback `(v  1 s 1 TMR0_DefaultCallback ]
+"177 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X/mcc_generated_files/system/interrupt.h
+[v _pushed pushed `a  1 e 1 0 ]
+[s S36 . 1 `uc 1 INTEDG 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"426 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
+[u S41 . 1 `S36 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES41  1 e 1 @11 ]
+"597
+[v _TRISA TRISA `VEuc  1 e 1 @18 ]
+"647
+[v _TRISB TRISB `VEuc  1 e 1 @19 ]
+"686
+[v _TRISC TRISC `VEuc  1 e 1 @20 ]
+"748
+[v _LATA LATA `VEuc  1 e 1 @24 ]
+[s S488 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+]
+"763
+[u S495 . 1 `S488 1 . 1 0 ]
+[v _LATAbits LATAbits `VES495  1 e 1 @24 ]
+"798
+[v _LATB LATB `VEuc  1 e 1 @25 ]
+"837
+[v _LATC LATC `VEuc  1 e 1 @26 ]
+"1451
+[v _SSP1BUF SSP1BUF `VEuc  1 e 1 @396 ]
+"1471
+[v _SSP1ADD SSP1ADD `VEuc  1 e 1 @397 ]
+"1661
+[v _SSP1STAT SSP1STAT `VEuc  1 e 1 @399 ]
+"2025
+[v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @400 ]
+[s S347 . 1 `uc 1 SSPM 1 0 :4:0 
+`uc 1 CKP 1 0 :1:4 
+`uc 1 SSPEN 1 0 :1:5 
+`uc 1 SSPOV 1 0 :1:6 
+`uc 1 WCOL 1 0 :1:7 
+]
+"2055
+[s S353 . 1 `uc 1 SSPM0 1 0 :1:0 
+`uc 1 SSPM1 1 0 :1:1 
+`uc 1 SSPM2 1 0 :1:2 
+`uc 1 SSPM3 1 0 :1:3 
+]
+[s S358 . 1 `uc 1 SSPM01 1 0 :1:0 
+`uc 1 SSPM11 1 0 :1:1 
+`uc 1 SSPM21 1 0 :1:2 
+`uc 1 SSPM31 1 0 :1:3 
+`uc 1 CKP1 1 0 :1:4 
+`uc 1 SSPEN1 1 0 :1:5 
+`uc 1 SSPOV1 1 0 :1:6 
+`uc 1 WCOL1 1 0 :1:7 
+]
+[u S367 . 1 `S347 1 . 1 0 `S353 1 . 1 0 `S358 1 . 1 0 ]
+[v _SSP1CON1bits SSP1CON1bits `VES367  1 e 1 @400 ]
+"2332
+[v _SSP1CON3 SSP1CON3 `VEuc  1 e 1 @402 ]
+"4687
+[v _TMR0L TMR0L `VEuc  1 e 1 @1436 ]
+"4825
+[v _TMR0H TMR0H `VEuc  1 e 1 @1437 ]
+"5079
+[v _T0CON0 T0CON0 `VEuc  1 e 1 @1438 ]
+[s S551 . 1 `uc 1 OUTPS 1 0 :4:0 
+`uc 1 MD16 1 0 :1:4 
+`uc 1 OUT 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 EN 1 0 :1:7 
+]
+"5113
+[s S557 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+`uc 1 T0MD16 1 0 :1:4 
+`uc 1 T0OUT 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 T0EN 1 0 :1:7 
+]
+[s S563 . 1 `uc 1 OUTPS0 1 0 :1:0 
+`uc 1 OUTPS1 1 0 :1:1 
+`uc 1 OUTPS2 1 0 :1:2 
+`uc 1 OUTPS3 1 0 :1:3 
+`uc 1 T016BIT 1 0 :1:4 
+]
+[s S569 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+`uc 1 T0OUTPS1 1 0 :1:1 
+`uc 1 T0OUTPS2 1 0 :1:2 
+`uc 1 T0OUTPS3 1 0 :1:3 
+]
+[u S574 . 1 `S551 1 . 1 0 `S557 1 . 1 0 `S563 1 . 1 0 `S569 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES574  1 e 1 @1438 ]
+"5203
+[v _T0CON1 T0CON1 `VEuc  1 e 1 @1439 ]
+[s S23 . 1 `uc 1 INTF 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIF 1 0 :1:4 
+`uc 1 TMR0IF 1 0 :1:5 
+]
+"5358
+[u S28 . 1 `S23 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES28  1 e 1 @1804 ]
+[s S322 . 1 `uc 1 ADIF 1 0 :1:0 
+`uc 1 SSP1IF 1 0 :1:1 
+`uc 1 BCL1IF 1 0 :1:2 
+`uc 1 TX1IF 1 0 :1:3 
+`uc 1 RC1IF 1 0 :1:4 
+`uc 1 TMR1IF 1 0 :1:5 
+`uc 1 TMR2IF 1 0 :1:6 
+`uc 1 CCP1IF 1 0 :1:7 
+]
+"5395
+[u S331 . 1 `S322 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES331  1 e 1 @1805 ]
+[s S59 . 1 `uc 1 INTE 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+"5486
+[u S64 . 1 `S59 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES64  1 e 1 @1814 ]
+[s S301 . 1 `uc 1 ADIE 1 0 :1:0 
+`uc 1 SSP1IE 1 0 :1:1 
+`uc 1 BCL1IE 1 0 :1:2 
+`uc 1 TX1IE 1 0 :1:3 
+`uc 1 RC1IE 1 0 :1:4 
+`uc 1 TMR1IE 1 0 :1:5 
+`uc 1 TMR2IE 1 0 :1:6 
+`uc 1 CCP1IE 1 0 :1:7 
+]
+"5523
+[u S310 . 1 `S301 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES310  1 e 1 @1815 ]
+"6049
+[v _OSCEN OSCEN `VEuc  1 e 1 @2193 ]
+"6089
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2194 ]
+"6147
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2195 ]
+"6266
+[v _INTPPS INTPPS `VEuc  1 e 1 @7824 ]
+"6782
+[v _SSP1CLKPPS SSP1CLKPPS `VEuc  1 e 1 @7877 ]
+"6848
+[v _SSP1DATPPS SSP1DATPPS `VEuc  1 e 1 @7878 ]
+"6914
+[v _SSP1SSPPS SSP1SSPPS `VEuc  1 e 1 @7879 ]
+"7654
+[v _RB4PPS RB4PPS `VEuc  1 e 1 @7964 ]
+"7828
+[v _RB7PPS RB7PPS `VEuc  1 e 1 @7967 ]
+"8350
+[v _ANSELA ANSELA `VEuc  1 e 1 @7992 ]
+"8395
+[v _WPUA WPUA `VEuc  1 e 1 @7993 ]
+"8445
+[v _ODCONA ODCONA `VEuc  1 e 1 @7994 ]
+"8490
+[v _SLRCONA SLRCONA `VEuc  1 e 1 @7995 ]
+"8535
+[v _INLVLA INLVLA `VEuc  1 e 1 @7996 ]
+"8585
+[v _IOCAP IOCAP `VEuc  1 e 1 @7997 ]
+"8635
+[v _IOCAN IOCAN `VEuc  1 e 1 @7998 ]
+"8685
+[v _IOCAF IOCAF `VEuc  1 e 1 @7999 ]
+"8735
+[v _ANSELB ANSELB `VEuc  1 e 1 @8003 ]
+"8774
+[v _WPUB WPUB `VEuc  1 e 1 @8004 ]
+"8813
+[v _ODCONB ODCONB `VEuc  1 e 1 @8005 ]
+"8852
+[v _SLRCONB SLRCONB `VEuc  1 e 1 @8006 ]
+"8891
+[v _INLVLB INLVLB `VEuc  1 e 1 @8007 ]
+"8930
+[v _IOCBP IOCBP `VEuc  1 e 1 @8008 ]
+"8969
+[v _IOCBN IOCBN `VEuc  1 e 1 @8009 ]
+"9008
+[v _IOCBF IOCBF `VEuc  1 e 1 @8010 ]
+"9047
+[v _ANSELC ANSELC `VEuc  1 e 1 @8014 ]
+"9109
+[v _WPUC WPUC `VEuc  1 e 1 @8015 ]
+"9171
+[v _ODCONC ODCONC `VEuc  1 e 1 @8016 ]
+"9233
+[v _SLRCONC SLRCONC `VEuc  1 e 1 @8017 ]
+"9295
+[v _INLVLC INLVLC `VEuc  1 e 1 @8018 ]
+"9357
+[v _IOCCP IOCCP `VEuc  1 e 1 @8019 ]
+"9419
+[v _IOCCN IOCCN `VEuc  1 e 1 @8020 ]
+"9481
+[v _IOCCF IOCCF `VEuc  1 e 1 @8021 ]
+"42 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\main.c
+[v _led_state led_state `a  1 e 1 0 ]
+[s S295 . 5 `uc 1 stat 1 0 `uc 1 con1 1 1 `uc 1 con3 1 2 `uc 1 baud 1 3 `uc 1 clock 1 4 ]
+"55 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/spi/src/mssp1.c
+[v _spi1_configuration spi1_configuration `DC[2]S295  1 s 10 spi1_configuration ]
+"39 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/interrupt.c
+[v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
+"267 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/timer/tmr0.h
+[v _timerOverflow timerOverflow `a  1 e 1 0 ]
+"268
+[v _divider divider `us  1 e 2 0 ]
+"38 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/timer/src/tmr0.c
+[v _TMR0_PeriodMatchCallback TMR0_PeriodMatchCallback `*.37(v  1 s 2 TMR0_PeriodMatchCallback ]
+"46 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\main.c
+[v _main main `(i  1 e 2 0 ]
+{
+"77
+} 0
+"79
+[v _toggle_led toggle_led `(v  1 e 1 0 ]
+{
+"82
+} 0
+"84
+[v _spi_send_data spi_send_data `(v  1 e 1 0 ]
+{
+[v spi_send_data@data data `uc  1 p 1 wreg ]
+[v spi_send_data@data data `uc  1 p 1 wreg ]
+[v spi_send_data@data data `uc  1 p 1 10 ]
+"88
+} 0
+"81 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/spi/src/mssp1.c
+[v _SPI1_Open SPI1_Open `(a  1 e 1 0 ]
+{
+"83
+[v SPI1_Open@returnValue returnValue `a  1 a 1 9 ]
+"81
+[v SPI1_Open@spiConfigIndex spiConfigIndex `uc  1 p 1 6 ]
+"100
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"171 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/spi/src/mssp1.c
+[v _SPI1_ByteWrite SPI1_ByteWrite `(v  1 e 1 0 ]
+{
+[v SPI1_ByteWrite@byteData byteData `uc  1 p 1 0 ]
+"174
+} 0
+"40 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/system.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"46
+} 0
+"60 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/spi/src/mssp1.c
+[v _SPI1_Initialize SPI1_Initialize `(v  1 e 1 0 ]
+{
+"70
+} 0
+"38 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/pins.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"116
+} 0
+"41 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/interrupt.c
+[v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
+{
+"51
+} 0
+"95
+[v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
+"97
+} 0
+"39 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/clock.c
+[v _CLOCK_Initialize CLOCK_Initialize `(v  1 e 1 0 ]
+{
+"47
+} 0
+"60 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/interrupt.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+{
+"75
+} 0
+"126 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/timer/src/tmr0.c
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+{
+"133
+} 0
+"140
+[v _TMR0_DefaultCallback TMR0_DefaultCallback `(v  1 s 1 TMR0_DefaultCallback ]
+{
+"149
+} 0
+"77 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/system/src/interrupt.c
+[v _INT_ISR INT_ISR `(v  1 e 1 0 ]
+{
+"83
+} 0
+"86
+[v _INT_CallBack INT_CallBack `(v  1 e 1 0 ]
+{
+"93
+} 0
+"99
+[v _INT_DefaultInterruptHandler INT_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"103
+} 0

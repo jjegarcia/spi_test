@@ -44,6 +44,7 @@
 #include "../spi/mssp1.h"
 #include "../system/interrupt.h"
 #include "../system/clock.h"
+#include "../timer/tmr0.h"
 
 /**
  * @ingroup systemdriver

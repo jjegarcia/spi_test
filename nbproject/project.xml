@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>spi_test</name>
-            <creation-uuid>18db2e7b-3335-4184-875a-34a2f5027fa2</creation-uuid>
+            <name>pic16f244_spi</name>
+            <creation-uuid>3e4566f2-dad8-4930-bf94-8d0cbdab82d2</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
