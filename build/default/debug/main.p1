@@ -639,7 +639,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i F3781
 :U ..
 "61
-[; ;main.c: 61:     uint8_t spiData[]={0x29,0x67,0x77,0x64};
+[; ;main.c: 61:     uint8_t spiData[] = {
 -> -> 41 `i `uc
 -> -> 103 `i `uc
 -> -> 119 `i `uc
@@ -648,72 +648,75 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 [v _spiData `uc ~T0 @X0 -> 4 `i a ]
 [e = _spiData F3781 ]
-"63
-[; ;main.c: 63:     while (1) {
+"69
+[; ;main.c: 69:     while (1) {
 [e :U 524 ]
 {
-"64
-[; ;main.c: 64:         if (timerOverflow) {
+"70
+[; ;main.c: 70:         if (timerOverflow) {
 [e $ ! != -> _timerOverflow `i -> 0 `i 526  ]
 {
-"65
-[; ;main.c: 65:             toggle_led();
+"71
+[; ;main.c: 71:             toggle_led();
 [e ( _toggle_led ..  ]
-"66
-[; ;main.c: 66:             timerOverflow = 0;
+"72
+[; ;main.c: 72:             timerOverflow = 0;
 [e = _timerOverflow -> -> 0 `i `a ]
-"67
-[; ;main.c: 67:               spi_send_data(spiData);
-[e ( _spi_send_data (1 &U _spiData ]
-"68
-[; ;main.c: 68:       }
+"74
+[; ;main.c: 74:         }
 }
 [e :U 526 ]
-"70
-[; ;main.c: 70:         {
+"76
+[; ;main.c: 76:         {
 {
-"73
-[; ;main.c: 73:         }
+"77
+[; ;main.c: 77:             spi_send_data(&spiData);
+[e ( _spi_send_data (1 -> &U _spiData `*uc ]
+"78
+[; ;main.c: 78:             pushed = 0;
+[e = _pushed -> -> 0 `i `a ]
+"79
+[; ;main.c: 79:         }
 }
-"74
-[; ;main.c: 74:     }
+"80
+[; ;main.c: 80:     }
 }
 [e :U 523 ]
 [e $U 524  ]
 [e :U 525 ]
-"75
-[; ;main.c: 75: }
+"81
+[; ;main.c: 81: }
 [e :UE 522 ]
 }
-"77
-[; ;main.c: 77: void toggle_led(void) {
+"83
+[; ;main.c: 83: void toggle_led(void) {
 [v _toggle_led `(v ~T0 @X0 1 ef ]
 {
 [e :U _toggle_led ]
 [f ]
-"78
-[; ;main.c: 78:     led_state = ~led_state;
+"84
+[; ;main.c: 84:     led_state = ~led_state;
 [e = _led_state -> ~ -> _led_state `i `a ]
-"79
-[; ;main.c: 79:     LATAbits.LATA2 = led_state;
+"85
+[; ;main.c: 85:     LATAbits.LATA2 = led_state;
 [e = . . _LATAbits 0 2 -> _led_state `uc ]
-"80
-[; ;main.c: 80: }
+"86
+[; ;main.c: 86: }
 [e :UE 527 ]
 }
-"82
-[; ;main.c: 82: void spi_send_data(uint8_t *data) {
+"88
+[; ;main.c: 88: void spi_send_data(uint8_t *data) {
 [v _spi_send_data `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _spi_send_data ]
 [v _data `*uc ~T0 @X0 1 r1 ]
 [f ]
-"85
-[; ;main.c: 85:     if (SPI1_Open(0)) {
+"91
+[; ;main.c: 91:     if (SPI1_Open(0)) {
 [e $ ! != -> ( _SPI1_Open (1 -> -> 0 `i `uc `i -> 0 `i 529  ]
 {
-"86
-[; ;main.c: 86:        while( !SPI1_IsTxReady()){}
+"92
+[; ;main.c: 92:         while (!SPI1_IsTxReady()) {}
 [e $U 530  ]
 [e :U 531 ]
 {
@@ -721,17 +724,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 530 ]
 [e $ ! != -> ( _SPI1_IsTxReady ..  `i -> 0 `i 531  ]
 [e :U 532 ]
-"87
-[; ;main.c: 87:         SPI1_BufferWrite(data,4);
+"93
+[; ;main.c: 93:         SPI1_BufferWrite(data, 4);
 [e ( _SPI1_BufferWrite (2 , _data -> -> 4 `i `ui ]
-"88
-[; ;main.c: 88:         SPI1_Close();
+"94
+[; ;main.c: 94:         SPI1_Close();
 [e ( _SPI1_Close ..  ]
-"89
-[; ;main.c: 89:     }
+"95
+[; ;main.c: 95:     }
 }
 [e :U 529 ]
-"90
-[; ;main.c: 90: }
+"96
+[; ;main.c: 96: }
 [e :UE 528 ]
 }

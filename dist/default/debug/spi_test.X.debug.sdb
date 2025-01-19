@@ -11,9 +11,9 @@
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "44 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\main.c
 [v _main main `(i  1 e 2 0 ]
-"77
+"83
 [v _toggle_led toggle_led `(v  1 e 1 0 ]
-"82
+"88
 [v _spi_send_data spi_send_data `(v  1 e 1 0 ]
 "63 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/spi/src/mssp1.c
 [v _SPI1_Initialize SPI1_Initialize `(v  1 e 1 0 ]
@@ -320,18 +320,18 @@
 [v main@spiData spiData `[4]uc  1 a 4 0 ]
 "57
 [v main@F3781 F3781 `[4]uc  1 s 4 F3781 ]
-"75
+"81
 } 0
-"77
+"83
 [v _toggle_led toggle_led `(v  1 e 1 0 ]
 {
-"80
+"86
 } 0
-"82
+"88
 [v _spi_send_data spi_send_data `(v  1 e 1 0 ]
 {
 [v spi_send_data@data data `*.4uc  1 p 1 10 ]
-"90
+"96
 } 0
 "84 C:\Users\jjega\OneDrive\Documents\GitHub\spi_test.X\mcc_generated_files/spi/src/mssp1.c
 [v _SPI1_Open SPI1_Open `(a  1 e 1 0 ]

@@ -58,18 +58,24 @@ int main(void) {
 
     // Disable the Peripheral Interrupts 
     //INTERRUPT_PeripheralInterruptDisable(); 
-    uint8_t spiData[]={0x29,0x67,0x77,0x64};
+    uint8_t spiData[] = {
+        0x29, 0x67, 0x77, 0x64
+//                ,0x29, 0x67, 0x77, 0x64,
+//        0x29, 0x67, 0x77, 0x64, 0x29, 0x67, 0x77, 0x64,
+//        0x29, 0x67, 0x77, 0x64, 0x29, 0x67, 0x77, 0x64,
+//        0x29, 0x67, 0x77, 0x64, 0x29, 0x67, 0x77, 0x64
+    };
 
     while (1) {
         if (timerOverflow) {
             toggle_led();
             timerOverflow = false;
-              spi_send_data(spiData);
-      }
-//        if (pushed)
+            //              spi_send_data(spiData);
+        }
+        //        if (pushed)
         {
-//            spi_send_data(&spiData);
-//            pushed = false;
+            spi_send_data(&spiData);
+            pushed = false;
         }
     }
 }
@@ -80,11 +86,11 @@ void toggle_led(void) {
 }
 
 void spi_send_data(uint8_t *data) {
-//      uint8_t *bufferInput = data;
+    //      uint8_t *bufferInput = data;
 
     if (SPI1_Open(0)) {
-       while( !SPI1_IsTxReady()){}
-        SPI1_BufferWrite(data,4);
+        while (!SPI1_IsTxReady()) {}
+        SPI1_BufferWrite(data, 4);
         SPI1_Close();
     }
 }

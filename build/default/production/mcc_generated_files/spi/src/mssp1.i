@@ -6282,7 +6282,7 @@ _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 void SPI1_Close(void);
 # 164 "mcc_generated_files/spi/src/../mssp1.h"
-void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
+void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
 # 173 "mcc_generated_files/spi/src/../mssp1.h"
 void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
 # 182 "mcc_generated_files/spi/src/../mssp1.h"
@@ -6395,7 +6395,7 @@ void SPI1_Close(void)
     SSP1CON1bits.SSPEN = 0;
 }
 
-void SPI1_BufferExchange(void *bufferData, size_t bufferSize)
+void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize)
 {
     uint8_t *bufferInput = bufferData;
     size_t bufferInputSize = bufferSize;

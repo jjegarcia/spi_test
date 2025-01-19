@@ -6493,18 +6493,24 @@ int main(void) {
 
 
 
-    uint8_t spiData[]={0x29,0x67,0x77,0x64};
+    uint8_t spiData[] = {
+        0x29, 0x67, 0x77, 0x64
+
+
+
+
+    };
 
     while (1) {
         if (timerOverflow) {
             toggle_led();
             timerOverflow = 0;
-              spi_send_data(spiData);
-      }
+
+        }
 
         {
-
-
+            spi_send_data(&spiData);
+            pushed = 0;
         }
     }
 }
@@ -6518,8 +6524,8 @@ void spi_send_data(uint8_t *data) {
 
 
     if (SPI1_Open(0)) {
-       while( !SPI1_IsTxReady()){}
-        SPI1_BufferWrite(data,4);
+        while (!SPI1_IsTxReady()) {}
+        SPI1_BufferWrite(data, 4);
         SPI1_Close();
     }
 }

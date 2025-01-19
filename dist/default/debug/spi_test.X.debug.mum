@@ -1,6 +1,6 @@
 
 16F15244 Memory Summary:
-    Program space        used   25Eh (   606) of  1000h words   ( 14.8%)
+    Program space        used   25Fh (   607) of  1000h words   ( 14.8%)
     Data space           used    20h (    32) of   200h bytes   (  6.2%)
     EEPROM space         None available
     Configuration bits   used     5h (     5) of     5h words   (100.0%)
