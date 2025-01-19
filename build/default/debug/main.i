@@ -6306,9 +6306,9 @@ _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 void SPI1_Close(void);
 # 164 "./mcc_generated_files/system/../spi/mssp1.h"
-void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
+void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
 # 173 "./mcc_generated_files/system/../spi/mssp1.h"
-void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
+void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
 # 182 "./mcc_generated_files/system/../spi/mssp1.h"
 void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
@@ -6474,7 +6474,7 @@ void SYSTEM_Initialize(void);
 
 _Bool led_state = 0;
 void toggle_led(void);
-void spi_send_data(uint8_t data);
+void spi_send_data(uint8_t *data);
 
 int main(void) {
     SYSTEM_Initialize();
@@ -6493,16 +6493,18 @@ int main(void) {
 
 
 
-
+    uint8_t spiData[]={0x29,0x67,0x77,0x64};
 
     while (1) {
         if (timerOverflow) {
             toggle_led();
             timerOverflow = 0;
-        }
-        if (pushed) {
-            spi_send_data(0x33);
-            pushed = 0;
+              spi_send_data(spiData);
+      }
+
+        {
+
+
         }
     }
 }
@@ -6512,8 +6514,12 @@ void toggle_led(void) {
     LATAbits.LATA2 = led_state;
 }
 
-void spi_send_data(uint8_t data) {
+void spi_send_data(uint8_t *data) {
+
+
     if (SPI1_Open(0)) {
-        SPI1_ByteWrite(data);
+       while( !SPI1_IsTxReady()){}
+        SPI1_BufferWrite(data,4);
+        SPI1_Close();
     }
 }

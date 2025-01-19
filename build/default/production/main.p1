@@ -18,8 +18,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 41: void toggle_led(void);
 [v _toggle_led `(v ~T0 @X0 0 ef ]
 "42
-[; ;main.c: 42: void spi_send_data(uint8_t data);
-[v _spi_send_data `(v ~T0 @X0 0 ef1`uc ]
+[; ;main.c: 42: void spi_send_data(uint8_t *data);
+[v _spi_send_data `(v ~T0 @X0 0 ef1`*uc ]
 "754 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 754:     struct {
 [s S45 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -34,9 +34,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "147 ./mcc_generated_files/system/../spi/mssp1.h
 [; ;./mcc_generated_files/system/../spi/mssp1.h: 147: _Bool SPI1_Open(uint8_t spiConfigIndex);
 [v _SPI1_Open `(a ~T0 @X0 0 ef1`uc ]
-"200
-[; ;./mcc_generated_files/system/../spi/mssp1.h: 200: void SPI1_ByteWrite(uint8_t byteData);
-[v _SPI1_ByteWrite `(v ~T0 @X0 0 ef1`uc ]
+"226
+[; ;./mcc_generated_files/system/../spi/mssp1.h: 226: _Bool SPI1_IsTxReady(void);
+[v _SPI1_IsTxReady `(a ~T0 @X0 0 ef ]
+[v F3787 `(a ~T0 @X0 0 tf ]
+"173
+[; ;./mcc_generated_files/system/../spi/mssp1.h: 173: void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
+[v _SPI1_BufferWrite `(v ~T0 @X0 0 ef2`*uc`ui ]
 "110 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 110: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -614,98 +618,106 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `a
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"44
-[; ;main.c: 44: int main(void) {
+"45
+[; ;main.c: 45: int main(void) {
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"45
-[; ;main.c: 45:     SYSTEM_Initialize();
+"46
+[; ;main.c: 46:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"51
-[; ;main.c: 51:     (INTCONbits.GIE = 1);
+"52
+[; ;main.c: 52:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"57
-[; ;main.c: 57:     (INTCONbits.PEIE = 1);
+"58
+[; ;main.c: 58:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-"63
-[; ;main.c: 63:     while (1) {
+"62
+[; ;main.c: 62:     uint8_t spiData={0x29,0x67,0x77,0x64};
+[v _spiData `uc ~T0 @X0 1 a ]
+[e = _spiData -> -> 41 `i `uc ]
+"64
+[; ;main.c: 64:     while (1) {
 [e :U 524 ]
 {
-"64
-[; ;main.c: 64:         if (timerOverflow) {
+"65
+[; ;main.c: 65:         if (timerOverflow) {
 [e $ ! != -> _timerOverflow `i -> 0 `i 526  ]
 {
-"65
-[; ;main.c: 65:             toggle_led();
-[e ( _toggle_led ..  ]
 "66
-[; ;main.c: 66:             timerOverflow = 0;
-[e = _timerOverflow -> -> 0 `i `a ]
+[; ;main.c: 66:             toggle_led();
+[e ( _toggle_led ..  ]
 "67
-[; ;main.c: 67:         }
+[; ;main.c: 67:             timerOverflow = 0;
+[e = _timerOverflow -> -> 0 `i `a ]
+"68
+[; ;main.c: 68:               spi_send_data(&spiData);
+[e ( _spi_send_data (1 &U _spiData ]
+"69
+[; ;main.c: 69:       }
 }
 [e :U 526 ]
-"68
-[; ;main.c: 68:         if (pushed) {
-[e $ ! != -> _pushed `i -> 0 `i 527  ]
-{
-"69
-[; ;main.c: 69:             spi_send_data(0x33);
-[e ( _spi_send_data (1 -> -> 51 `i `uc ]
-"70
-[; ;main.c: 70:             pushed = 0;
-[e = _pushed -> -> 0 `i `a ]
 "71
-[; ;main.c: 71:         }
+[; ;main.c: 71:         {
+{
+"74
+[; ;main.c: 74:         }
 }
-[e :U 527 ]
-"72
-[; ;main.c: 72:     }
+"75
+[; ;main.c: 75:     }
 }
 [e :U 523 ]
 [e $U 524  ]
 [e :U 525 ]
-"73
-[; ;main.c: 73: }
+"76
+[; ;main.c: 76: }
 [e :UE 522 ]
 }
-"75
-[; ;main.c: 75: void toggle_led(void) {
+"78
+[; ;main.c: 78: void toggle_led(void) {
 [v _toggle_led `(v ~T0 @X0 1 ef ]
 {
 [e :U _toggle_led ]
 [f ]
-"76
-[; ;main.c: 76:     led_state = ~led_state;
+"79
+[; ;main.c: 79:     led_state = ~led_state;
 [e = _led_state -> ~ -> _led_state `i `a ]
-"77
-[; ;main.c: 77:     LATAbits.LATA2 = led_state;
-[e = . . _LATAbits 0 2 -> _led_state `uc ]
-"78
-[; ;main.c: 78: }
-[e :UE 528 ]
-}
 "80
-[; ;main.c: 80: void spi_send_data(uint8_t data) {
-[v _spi_send_data `(v ~T0 @X0 1 ef1`uc ]
+[; ;main.c: 80:     LATAbits.LATA2 = led_state;
+[e = . . _LATAbits 0 2 -> _led_state `uc ]
+"81
+[; ;main.c: 81: }
+[e :UE 527 ]
+}
+"83
+[; ;main.c: 83: void spi_send_data(uint8_t *data) {
+[v _spi_send_data `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _spi_send_data ]
-[v _data `uc ~T0 @X0 1 r1 ]
+[v _data `*uc ~T0 @X0 1 r1 ]
 [f ]
-"81
-[; ;main.c: 81:     if (SPI1_Open(0)) {
-[e $ ! != -> ( _SPI1_Open (1 -> -> 0 `i `uc `i -> 0 `i 530  ]
+"86
+[; ;main.c: 86:     if (SPI1_Open(0)) {
+[e $ ! != -> ( _SPI1_Open (1 -> -> 0 `i `uc `i -> 0 `i 529  ]
 {
-"82
-[; ;main.c: 82:         SPI1_ByteWrite(data);
-[e ( _SPI1_ByteWrite (1 _data ]
-"83
-[; ;main.c: 83:     }
+"87
+[; ;main.c: 87:        while( !SPI1_IsTxReady){}
+[e $U 530  ]
+[e :U 531 ]
+{
 }
 [e :U 530 ]
-"84
-[; ;main.c: 84: }
-[e :UE 529 ]
+[e $ ! != &U _SPI1_IsTxReady -> -> 0 `i `*F3787 531  ]
+[e :U 532 ]
+"88
+[; ;main.c: 88:         SPI1_BufferWrite(&data,4);
+[e ( _SPI1_BufferWrite (2 , -> &U _data `*uc -> -> 4 `i `ui ]
+"90
+[; ;main.c: 90:     }
+}
+[e :U 529 ]
+"91
+[; ;main.c: 91: }
+[e :UE 528 ]
 }

@@ -161,7 +161,7 @@ void SPI1_Close(void);
  * @param [in] bufferSize Size of the data in bytes
  * @return None.
  */
-void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
+void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
 
 /**
  * @ingroup spi1
@@ -170,7 +170,7 @@ void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
  * @param [in] bufferSize Size of the data in bytes
  * @return None.
  */
-void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
+void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
 
 /**
  * @ingroup spi1

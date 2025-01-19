@@ -39,7 +39,7 @@
  */
 bool led_state = false;
 void toggle_led(void);
-void spi_send_data(uint8_t data);
+void spi_send_data(uint8_t *data);
 
 int main(void) {
     SYSTEM_Initialize();
@@ -58,16 +58,18 @@ int main(void) {
 
     // Disable the Peripheral Interrupts 
     //INTERRUPT_PeripheralInterruptDisable(); 
-
+    uint8_t spiData[]={0x29,0x67,0x77,0x64};
 
     while (1) {
         if (timerOverflow) {
             toggle_led();
             timerOverflow = false;
-        }
-        if (pushed) {
-            spi_send_data(0x33);
-            pushed = false;
+              spi_send_data(spiData);
+      }
+//        if (pushed)
+        {
+//            spi_send_data(&spiData);
+//            pushed = false;
         }
     }
 }
@@ -77,8 +79,12 @@ void toggle_led(void) {
     LATAbits.LATA2 = led_state;
 }
 
-void spi_send_data(uint8_t data) {
+void spi_send_data(uint8_t *data) {
+//      uint8_t *bufferInput = data;
+
     if (SPI1_Open(0)) {
-        SPI1_ByteWrite(data);
+       while( !SPI1_IsTxReady()){}
+        SPI1_BufferWrite(data,4);
+        SPI1_Close();
     }
 }

@@ -32,14 +32,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/spi/src/../mssp1.h: 155: void SPI1_Close(void);
 [v _SPI1_Close `(v ~T0 @X0 0 ef ]
 "164
-[; ;mcc_generated_files/spi/src/../mssp1.h: 164: void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
-[v _SPI1_BufferExchange `(v ~T0 @X0 0 ef2`*v`ui ]
+[; ;mcc_generated_files/spi/src/../mssp1.h: 164: void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
+[v _SPI1_BufferExchange `(v ~T0 @X0 0 ef2`*uc`ui ]
+[v F3728 `(v ~T0 @X0 0 tf2`*v`ui ]
 "182
 [; ;mcc_generated_files/spi/src/../mssp1.h: 182: void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 [v _SPI1_BufferRead `(v ~T0 @X0 0 ef2`*v`ui ]
 "173
-[; ;mcc_generated_files/spi/src/../mssp1.h: 173: void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
-[v _SPI1_BufferWrite `(v ~T0 @X0 0 ef2`*v`ui ]
+[; ;mcc_generated_files/spi/src/../mssp1.h: 173: void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
+[v _SPI1_BufferWrite `(v ~T0 @X0 0 ef2`*uc`ui ]
+[v F3737 `(v ~T0 @X0 0 tf2`*v`ui ]
 "190
 [; ;mcc_generated_files/spi/src/../mssp1.h: 190: uint8_t SPI1_ByteExchange(uint8_t byteData);
 [v _SPI1_ByteExchange `(uc ~T0 @X0 0 ef1`uc ]
@@ -55,10 +57,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "226
 [; ;mcc_generated_files/spi/src/../mssp1.h: 226: _Bool SPI1_IsTxReady(void);
 [v _SPI1_IsTxReady `(a ~T0 @X0 0 ef ]
-[v F3745 `(v ~T0 @X0 0 tf ]
-[v F3744 `(v ~T0 @X0 0 tf1`*F3745 ]
-[v F3748 `(v ~T0 @X0 0 tf ]
-[v F3747 `(v ~T0 @X0 0 tf1`*F3748 ]
+[v F3751 `(v ~T0 @X0 0 tf ]
+[v F3750 `(v ~T0 @X0 0 tf1`*F3751 ]
+[v F3754 `(v ~T0 @X0 0 tf ]
+[v F3753 `(v ~T0 @X0 0 tf1`*F3754 ]
 "43 mcc_generated_files/spi/src/../spi_polling_types.h
 [; ;mcc_generated_files/spi/src/../spi_polling_types.h: 43: typedef struct {
 [s S521 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
@@ -681,16 +683,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 &U _SPI1_Deinitialize
 &U _SPI1_Open
 &U _SPI1_Close
-&U _SPI1_BufferExchange
+-> &U _SPI1_BufferExchange `*F3728
 &U _SPI1_BufferRead
-&U _SPI1_BufferWrite
+-> &U _SPI1_BufferWrite `*F3737
 &U _SPI1_ByteExchange
 &U _SPI1_ByteRead
 &U _SPI1_ByteWrite
 &U _SPI1_IsRxReady
 &U _SPI1_IsTxReady
--> -> -> 0 `i `*v `*F3744
--> -> -> 0 `i `*v `*F3747
+-> -> -> 0 `i `*v `*F3750
+-> -> -> 0 `i `*v `*F3753
 ..
 ..
 ]
@@ -867,15 +869,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 527 ]
 }
 "110
-[; ;mcc_generated_files/spi/src/mssp1.c: 110: void SPI1_BufferExchange(void *bufferData, size_t bufferSize)
-[v _SPI1_BufferExchange `(v ~T0 @X0 1 ef2`*v`ui ]
+[; ;mcc_generated_files/spi/src/mssp1.c: 110: void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize)
+[v _SPI1_BufferExchange `(v ~T0 @X0 1 ef2`*uc`ui ]
 "111
 [; ;mcc_generated_files/spi/src/mssp1.c: 111: {
 {
 [e :U _SPI1_BufferExchange ]
 "110
-[; ;mcc_generated_files/spi/src/mssp1.c: 110: void SPI1_BufferExchange(void *bufferData, size_t bufferSize)
-[v _bufferData `*v ~T0 @X0 1 r1 ]
+[; ;mcc_generated_files/spi/src/mssp1.c: 110: void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize)
+[v _bufferData `*uc ~T0 @X0 1 r1 ]
 [v _bufferSize `ui ~T0 @X0 1 r2 ]
 "111
 [; ;mcc_generated_files/spi/src/mssp1.c: 111: {
@@ -883,7 +885,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "112
 [; ;mcc_generated_files/spi/src/mssp1.c: 112:     uint8_t *bufferInput = bufferData;
 [v _bufferInput `*uc ~T0 @X0 1 a ]
-[e = _bufferInput -> _bufferData `*uc ]
+[e = _bufferInput _bufferData ]
 "113
 [; ;mcc_generated_files/spi/src/mssp1.c: 113:     size_t bufferInputSize = bufferSize;
 [v _bufferInputSize `ui ~T0 @X0 1 a ]
@@ -938,15 +940,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 528 ]
 }
 "128
-[; ;mcc_generated_files/spi/src/mssp1.c: 128: void SPI1_BufferWrite(void *bufferData, size_t bufferSize)
-[v _SPI1_BufferWrite `(v ~T0 @X0 1 ef2`*v`ui ]
+[; ;mcc_generated_files/spi/src/mssp1.c: 128: void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize)
+[v _SPI1_BufferWrite `(v ~T0 @X0 1 ef2`*uc`ui ]
 "129
 [; ;mcc_generated_files/spi/src/mssp1.c: 129: {
 {
 [e :U _SPI1_BufferWrite ]
 "128
-[; ;mcc_generated_files/spi/src/mssp1.c: 128: void SPI1_BufferWrite(void *bufferData, size_t bufferSize)
-[v _bufferData `*v ~T0 @X0 1 r1 ]
+[; ;mcc_generated_files/spi/src/mssp1.c: 128: void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize)
+[v _bufferData `*uc ~T0 @X0 1 r1 ]
 [v _bufferSize `ui ~T0 @X0 1 r2 ]
 "129
 [; ;mcc_generated_files/spi/src/mssp1.c: 129: {
@@ -954,7 +956,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "130
 [; ;mcc_generated_files/spi/src/mssp1.c: 130:     uint8_t *bufferInput = bufferData;
 [v _bufferInput `*uc ~T0 @X0 1 a ]
-[e = _bufferInput -> _bufferData `*uc ]
+[e = _bufferInput _bufferData ]
 "131
 [; ;mcc_generated_files/spi/src/mssp1.c: 131:     size_t bufferInputSize = bufferSize;
 [v _bufferInputSize `ui ~T0 @X0 1 a ]

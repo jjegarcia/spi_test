@@ -107,7 +107,7 @@ void SPI1_Close(void)
     SSP1CON1bits.SSPEN = 0;
 }
 
-void SPI1_BufferExchange(void *bufferData, size_t bufferSize)
+void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize)
 {
     uint8_t *bufferInput = bufferData;
     size_t bufferInputSize = bufferSize;
@@ -125,7 +125,7 @@ void SPI1_BufferExchange(void *bufferData, size_t bufferSize)
     }
 }
 
-void SPI1_BufferWrite(void *bufferData, size_t bufferSize)
+void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize)
 {
     uint8_t *bufferInput = bufferData;
     size_t bufferInputSize = bufferSize;
