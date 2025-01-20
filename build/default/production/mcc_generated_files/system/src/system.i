@@ -6271,7 +6271,7 @@ struct SPI_INTERFACE
 
 
 extern const struct SPI_INTERFACE SPI1_Client;
-# 115 "mcc_generated_files/system/src/../../spi/mssp1.h"
+# 120 "mcc_generated_files/system/src/../../spi/mssp1.h"
 typedef enum {
     CLIENT_CONFIG_M0,
     CLIENT_CONFIG_M1,
@@ -6295,7 +6295,7 @@ void SPI1_Initialize(void);
 
 
 void SPI1_Deinitialize(void);
-# 147 "mcc_generated_files/system/src/../../spi/mssp1.h"
+# 152 "mcc_generated_files/system/src/../../spi/mssp1.h"
 _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
@@ -6305,11 +6305,11 @@ _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
 void SPI1_Close(void);
-# 164 "mcc_generated_files/system/src/../../spi/mssp1.h"
-void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
-# 173 "mcc_generated_files/system/src/../../spi/mssp1.h"
-void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
-# 182 "mcc_generated_files/system/src/../../spi/mssp1.h"
+# 169 "mcc_generated_files/system/src/../../spi/mssp1.h"
+void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
+# 178 "mcc_generated_files/system/src/../../spi/mssp1.h"
+void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
+# 187 "mcc_generated_files/system/src/../../spi/mssp1.h"
 void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
@@ -6319,7 +6319,7 @@ void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
 uint8_t SPI1_ByteExchange(uint8_t byteData);
-# 200 "mcc_generated_files/system/src/../../spi/mssp1.h"
+# 205 "mcc_generated_files/system/src/../../spi/mssp1.h"
 void SPI1_ByteWrite(uint8_t byteData);
 
 
@@ -6329,10 +6329,26 @@ void SPI1_ByteWrite(uint8_t byteData);
 
 
 uint8_t SPI1_ByteRead(void);
-# 217 "mcc_generated_files/system/src/../../spi/mssp1.h"
+# 222 "mcc_generated_files/system/src/../../spi/mssp1.h"
 _Bool SPI1_IsRxReady(void);
-# 226 "mcc_generated_files/system/src/../../spi/mssp1.h"
+# 231 "mcc_generated_files/system/src/../../spi/mssp1.h"
 _Bool SPI1_IsTxReady(void);
+
+
+
+
+
+
+
+void SPI1_RxCompleteCallbackRegister(void (*CallbackHandler)(void));
+
+
+
+
+
+
+
+void SPI1_ISR(void);
 # 44 "mcc_generated_files/system/src/../system.h" 2
 
 # 1 "mcc_generated_files/system/src/../../system/interrupt.h" 1

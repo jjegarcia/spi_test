@@ -37,7 +37,8 @@
 
 void (*INT_InterruptHandler)(void);
 
-void INTERRUPT_Initialize(void) {
+void  INTERRUPT_Initialize (void)
+{
     // Clear the interrupt flag
     // Set the external interrupt edge detect
     EXT_INT_InterruptFlagClear();
@@ -55,42 +56,57 @@ void INTERRUPT_Initialize(void) {
  * @param None.
  * @return None.
  */
-void __interrupt() INTERRUPT_InterruptManager(void) {
+void __interrupt() INTERRUPT_InterruptManager (void)
+{
     // interrupt handler
-    if (PIE0bits.INTE == 1 && PIR0bits.INTF == 1) {
+    if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
+    {
         INT_ISR();
-    } else if (INTCONbits.PEIE == 1) {
-        if (PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1) {
+    }
+    else if(INTCONbits.PEIE == 1)
+    {
+        if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)
+        {
             TMR0_ISR();
         }
-        else {
+        else if(PIE1bits.SSP1IE == 1 && PIR1bits.SSP1IF == 1)
+        {
+            SPI1_ISR();
+        } 
+        else
+        {
             //Unhandled Interrupt
         }
     }
-    else {
+    else
+    {
         //Unhandled Interrupt
     }
 }
 
-void INT_ISR(void) {
+void INT_ISR(void)
+{
     EXT_INT_InterruptFlagClear();
 
     // Callback function gets called everytime this ISR executes
     INT_CallBack();
 }
 
-void INT_CallBack(void) {
+
+void INT_CallBack(void)
+{
     // Add your custom callback code here
-    if (INT_InterruptHandler) {
+    if(INT_InterruptHandler)
+    {
         INT_InterruptHandler();
     }
 }
 
-void INT_SetInterruptHandler(void (* InterruptHandler)(void)) {
+void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
     INT_InterruptHandler = InterruptHandler;
 }
 
-void INT_DefaultInterruptHandler(void) {
+void INT_DefaultInterruptHandler(void){
     // add your INT interrupt custom code
     // or set custom function using INT_SetInterruptHandler()
     pushed = true;

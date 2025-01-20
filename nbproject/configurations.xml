@@ -10,7 +10,7 @@
         <logicalFolder name="spi" displayName="spi" projectFiles="true">
           <itemPath>mcc_generated_files/spi/spi_interface.h</itemPath>
           <itemPath>mcc_generated_files/spi/mssp1.h</itemPath>
-          <itemPath>mcc_generated_files/spi/spi_polling_types.h</itemPath>
+          <itemPath>mcc_generated_files/spi/spi_interrupt_types.h</itemPath>
         </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <itemPath>mcc_generated_files/system/config_bits.h</itemPath>

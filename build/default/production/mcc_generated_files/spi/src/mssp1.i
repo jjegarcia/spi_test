@@ -6247,7 +6247,7 @@ struct SPI_INTERFACE
 
 
 extern const struct SPI_INTERFACE SPI1_Client;
-# 115 "mcc_generated_files/spi/src/../mssp1.h"
+# 120 "mcc_generated_files/spi/src/../mssp1.h"
 typedef enum {
     CLIENT_CONFIG_M0,
     CLIENT_CONFIG_M1,
@@ -6271,7 +6271,7 @@ void SPI1_Initialize(void);
 
 
 void SPI1_Deinitialize(void);
-# 147 "mcc_generated_files/spi/src/../mssp1.h"
+# 152 "mcc_generated_files/spi/src/../mssp1.h"
 _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
@@ -6281,11 +6281,11 @@ _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
 void SPI1_Close(void);
-# 164 "mcc_generated_files/spi/src/../mssp1.h"
-void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
-# 173 "mcc_generated_files/spi/src/../mssp1.h"
-void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
-# 182 "mcc_generated_files/spi/src/../mssp1.h"
+# 169 "mcc_generated_files/spi/src/../mssp1.h"
+void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
+# 178 "mcc_generated_files/spi/src/../mssp1.h"
+void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
+# 187 "mcc_generated_files/spi/src/../mssp1.h"
 void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
@@ -6295,7 +6295,7 @@ void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
 uint8_t SPI1_ByteExchange(uint8_t byteData);
-# 200 "mcc_generated_files/spi/src/../mssp1.h"
+# 205 "mcc_generated_files/spi/src/../mssp1.h"
 void SPI1_ByteWrite(uint8_t byteData);
 
 
@@ -6305,14 +6305,68 @@ void SPI1_ByteWrite(uint8_t byteData);
 
 
 uint8_t SPI1_ByteRead(void);
-# 217 "mcc_generated_files/spi/src/../mssp1.h"
+# 222 "mcc_generated_files/spi/src/../mssp1.h"
 _Bool SPI1_IsRxReady(void);
-# 226 "mcc_generated_files/spi/src/../mssp1.h"
+# 231 "mcc_generated_files/spi/src/../mssp1.h"
 _Bool SPI1_IsTxReady(void);
+
+
+
+
+
+
+
+void SPI1_RxCompleteCallbackRegister(void (*CallbackHandler)(void));
+
+
+
+
+
+
+
+void SPI1_ISR(void);
 # 35 "mcc_generated_files/spi/src/mssp1.c" 2
 
-# 1 "mcc_generated_files/spi/src/../spi_polling_types.h" 1
-# 43 "mcc_generated_files/spi/src/../spi_polling_types.h"
+# 1 "mcc_generated_files/spi/src/../spi_interrupt_types.h" 1
+# 43 "mcc_generated_files/spi/src/../spi_interrupt_types.h"
+typedef enum
+{
+    SPI_RESET = 0x00U,
+    SPI_IDLE = 0x81U,
+    SPI_BUSY = 0x42U
+}spi_status_t;
+
+
+
+
+
+
+
+typedef enum
+{
+    SPI_READ = 0x00U,
+    SPI_WRITE = 0x81U,
+    SPI_EXCHANGE = 0X42U
+}spi_transfer_type_t;
+
+
+
+
+
+
+typedef volatile struct
+{
+    uint8_t* buffer;
+    size_t bufferLength;
+    spi_transfer_type_t transferType;
+    spi_status_t status;
+} spi_descriptor_t;
+
+
+
+
+
+
 typedef struct {
     uint8_t stat;
     uint8_t con1;
@@ -6336,8 +6390,16 @@ const struct SPI_INTERFACE SPI1_Client = {
     .ByteRead = SPI1_ByteRead,
     .IsRxReady = SPI1_IsRxReady,
     .IsTxReady = SPI1_IsTxReady,
-    .RxCompleteCallbackRegister = ((void*)0),
+    .RxCompleteCallbackRegister = SPI1_RxCompleteCallbackRegister,
     .TxCompleteCallbackRegister = ((void*)0)
+};
+
+static void (*SPI1_RxCompleteCallback)(void);
+
+static spi_descriptor_t spi1_descriptor = {
+    .buffer = ((void*)0),
+    .bufferLength = 0,
+    .status = SPI_RESET
 };
 
 static const spi_configuration_t spi1_configuration[] = {
@@ -6358,6 +6420,11 @@ void SPI1_Initialize(void)
     SSP1CON1 = 0x00;
     SSP1CON3 = 0x00;
     SSP1ADD = 0x00;
+
+
+    SPI1_RxCompleteCallbackRegister(((void*)0));
+
+    spi1_descriptor.status = SPI_RESET;
 }
 
 void SPI1_Deinitialize(void)
@@ -6367,6 +6434,8 @@ void SPI1_Deinitialize(void)
     SSP1CON1 = 0x00;
     SSP1CON3 = 0x00;
     SSP1ADD = 0x00;
+
+    spi1_descriptor.status = SPI_RESET;
 }
 
 _Bool SPI1_Open(uint8_t spiConfigIndex)
@@ -6374,12 +6443,15 @@ _Bool SPI1_Open(uint8_t spiConfigIndex)
     _Bool returnValue = 0;
     if (SSP1CON1bits.SSPEN == 0)
     {
+        spi1_descriptor.status = SPI_IDLE;
+
         SSP1STAT = spi1_configuration[spiConfigIndex].stat;
         SSP1CON1 = spi1_configuration[spiConfigIndex].con1;
         SSP1CON3 = spi1_configuration[spiConfigIndex].con3;
         SSP1ADD = spi1_configuration[spiConfigIndex].baud;
 
         SSP1CON1bits.SSPEN = 1;
+        PIE1bits.SSP1IE = 0;
 
         returnValue = 1;
     }
@@ -6393,92 +6465,122 @@ _Bool SPI1_Open(uint8_t spiConfigIndex)
 void SPI1_Close(void)
 {
     SSP1CON1bits.SSPEN = 0;
+    PIE1bits.SSP1IE = 0;
+    PIR1bits.SSP1IF = 0;
+    spi1_descriptor.status = SPI_RESET;
 }
 
-void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize)
+void SPI1_BufferExchange(void *bufferData, size_t bufferSize)
 {
     uint8_t *bufferInput = bufferData;
-    size_t bufferInputSize = bufferSize;
-    while (0U != bufferInputSize)
+    if (spi1_descriptor.status == SPI_IDLE)
     {
-        SSP1BUF = *bufferInput;
-        while (!PIR1bits.SSP1IF)
+        PIE1bits.SSP1IE = 1;
+        spi1_descriptor.buffer = bufferInput;
+        spi1_descriptor.bufferLength = bufferSize - (size_t)1U;
+        spi1_descriptor.transferType = SPI_EXCHANGE;
+        spi1_descriptor.status = SPI_BUSY;
+
+        SSP1BUF = *spi1_descriptor.buffer;
+    }
+    else
         {
 
         }
-        PIR1bits.SSP1IF = 0;
-        *bufferInput = SSP1BUF;
-        bufferInput++;
-        bufferInputSize--;
     }
-}
 
-void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize)
+void SPI1_BufferWrite(void *bufferData, size_t bufferSize)
 {
     uint8_t *bufferInput = bufferData;
-    size_t bufferInputSize = bufferSize;
-    while (0U != bufferInputSize)
+    if (spi1_descriptor.status == SPI_IDLE)
     {
-        SSP1BUF = *bufferInput;
-        while (!PIR1bits.SSP1IF)
-        {
+        PIE1bits.SSP1IE = 1;
+        spi1_descriptor.buffer = bufferInput;
+        spi1_descriptor.bufferLength = bufferSize - (size_t)1U;
+        spi1_descriptor.transferType = SPI_WRITE;
+        spi1_descriptor.status = SPI_BUSY;
 
+        SSP1BUF = *spi1_descriptor.buffer;
         }
-        PIR1bits.SSP1IF = 0;
-        bufferInput++;
-        bufferInputSize--;
     }
-}
 
 void SPI1_BufferRead(void *bufferData, size_t bufferSize)
 {
     uint8_t *bufferInput = bufferData;
-    size_t bufferInputSize = bufferSize;
-    while (0U != bufferInputSize)
+    if (spi1_descriptor.status == SPI_IDLE)
     {
+        PIE1bits.SSP1IE = 1;
+        spi1_descriptor.buffer = bufferInput;
+        spi1_descriptor.bufferLength = bufferSize - (size_t)1U;
+        spi1_descriptor.transferType = SPI_READ;
+        spi1_descriptor.status = SPI_BUSY;
+
         SSP1BUF = 0x00;
-        while (!PIR1bits.SSP1IF)
+    }
+    else
         {
 
         }
-        PIR1bits.SSP1IF = 0;
-        *bufferInput = SSP1BUF;
-        bufferInput++;
-        bufferInputSize--;
     }
-}
 
 uint8_t SPI1_ByteExchange(uint8_t byteData)
 {
-    SSP1BUF = byteData;
-    while (!PIR1bits.SSP1IF)
+    while (spi1_descriptor.status != SPI_IDLE)
     {
 
     }
-    PIR1bits.SSP1IF = 0;
-    return SSP1BUF;
+
+    PIE1bits.SSP1IE = 1;
+    spi1_descriptor.buffer = &byteData;
+    spi1_descriptor.bufferLength = 0;
+    spi1_descriptor.transferType = SPI_EXCHANGE;
+    spi1_descriptor.status = SPI_BUSY;
+
+    SSP1BUF = *spi1_descriptor.buffer;
+    while (spi1_descriptor.status == SPI_BUSY)
+    {
+
+}
+
+    return *spi1_descriptor.buffer;
 }
 
 void SPI1_ByteWrite(uint8_t byteData)
 {
+    if (spi1_descriptor.status == SPI_IDLE)
+    {
     SSP1BUF = byteData;
+}
+    else
+    {
+
+    }
 }
 
 uint8_t SPI1_ByteRead(void)
 {
+    uint8_t returnValue = 0;
+    if (spi1_descriptor.status == SPI_IDLE)
+    {
+        returnValue = SSP1BUF;
     if (1U == PIR1bits.SSP1IF)
     {
         PIR1bits.SSP1IF = 0;
     }
-    return SSP1BUF;
+}
+    else
+    {
+
+    }
+    return returnValue;
 }
 
 _Bool SPI1_IsRxReady(void)
 {
     _Bool returnValue = 0;
-    if (SSP1CON1bits.SSPEN == 1)
+    if ((spi1_descriptor.status == SPI_IDLE) && (1U == PIR1bits.SSP1IF))
     {
-        returnValue = ((PIR1bits.SSP1IF != 0U) ? 1: 0);
+        returnValue = 1;
     }
     else
     {
@@ -6490,13 +6592,73 @@ _Bool SPI1_IsRxReady(void)
 _Bool SPI1_IsTxReady(void)
 {
     _Bool returnValue = 0;
-    if (SSP1CON1bits.SSPEN == 1)
+    if (spi1_descriptor.status == SPI_IDLE)
     {
-        returnValue = ((PIR1bits.SSP1IF != 0U) ? 0: 1);
+        returnValue = 1;
     }
     else
     {
         returnValue = 0;
     }
     return returnValue;
+}
+
+void SPI1_ISR(void)
+{
+    PIR1bits.SSP1IF = 0;
+    uint8_t dataToWrite;
+    dataToWrite = 0x00;
+
+    if (spi1_descriptor.bufferLength > (size_t)0)
+    {
+        if (spi1_descriptor.transferType != SPI_WRITE)
+        {
+            *spi1_descriptor.buffer = SSP1BUF;
+        }
+        else
+        {
+
+        }
+
+        ++spi1_descriptor.buffer;
+
+        if (spi1_descriptor.transferType != SPI_READ)
+        {
+            dataToWrite = *spi1_descriptor.buffer;
+        }
+        else
+        {
+
+        }
+        --spi1_descriptor.bufferLength;
+        SSP1BUF = dataToWrite;
+    }
+    else
+    {
+        if ((spi1_descriptor.transferType != SPI_WRITE) && (spi1_descriptor.status != SPI_IDLE))
+        {
+            *spi1_descriptor.buffer = SSP1BUF;
+        }
+        else
+        {
+
+        }
+
+        spi1_descriptor.status = SPI_IDLE;
+        PIE1bits.SSP1IE = 0;
+
+        if (SPI1_RxCompleteCallback != ((void*)0))
+        {
+            SPI1_RxCompleteCallback();
+        }
+        else
+        {
+
+        }
+    }
+}
+
+void SPI1_RxCompleteCallbackRegister(void (*CallbackHandler)(void))
+{
+    SPI1_RxCompleteCallback = CallbackHandler;
 }

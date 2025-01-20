@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3777 `(v ~T0 @X0 0 tf ]
+[v F3782 `(v ~T0 @X0 0 tf ]
 "5351 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5351:     struct {
 [s S278 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -45,11 +45,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 "229 mcc_generated_files/system/src/../../system/../timer/tmr0.h
 [; ;mcc_generated_files/system/src/../../system/../timer/tmr0.h: 229: void TMR0_ISR(void);
 [v _TMR0_ISR `(v ~T0 @X0 0 ef ]
+"5512 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
+[; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5512:     struct {
+[s S286 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S286 . ADIE SSP1IE BCL1IE TX1IE RC1IE TMR1IE TMR2IE CCP1IE ]
+"5511
+[; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5511: typedef union {
+[u S285 `S286 1 ]
+[n S285 . . ]
+"5523
+[; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5523: extern volatile PIE1bits_t PIE1bits __attribute__((address(0x717)));
+[v _PIE1bits `VS285 ~T0 @X0 0 e@1815 ]
+"5384
+[; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5384:     struct {
+[s S280 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S280 . ADIF SSP1IF BCL1IF TX1IF RC1IF TMR1IF TMR2IF CCP1IF ]
+"5383
+[; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5383: typedef union {
+[u S279 `S280 1 ]
+[n S279 . . ]
+"5395
+[; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 5395: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x70D)));
+[v _PIR1bits `VS279 ~T0 @X0 0 e@1805 ]
+"247 mcc_generated_files/system/src/../../system/../spi/mssp1.h
+[; ;mcc_generated_files/system/src/../../system/../spi/mssp1.h: 247: void SPI1_ISR(void);
+[v _SPI1_ISR `(v ~T0 @X0 0 ef ]
 "150 mcc_generated_files/system/src/../../system/../system/interrupt.h
 [v _INT_CallBack `(v ~T0 @X0 0 ef ]
-[v F3783 `(v ~T0 @X0 0 tf ]
-[v F3785 `(v ~T0 @X0 0 tf ]
-[v F3787 `(v ~T0 @X0 0 tf ]
+[v F3788 `(v ~T0 @X0 0 tf ]
+[v F3790 `(v ~T0 @X0 0 tf ]
+[v F3792 `(v ~T0 @X0 0 tf ]
 "179 mcc_generated_files/system/src/../../system/../system/interrupt.h
 [v _pushed `a ~T0 @X0 1 e ]
 [i _pushed
@@ -621,147 +646,184 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "38 mcc_generated_files/system/src/interrupt.c
 [; ;mcc_generated_files/system/src/interrupt.c: 38: void (*INT_InterruptHandler)(void);
-[v _INT_InterruptHandler `*F3777 ~T0 @X0 1 e ]
+[v _INT_InterruptHandler `*F3782 ~T0 @X0 1 e ]
 "40
-[; ;mcc_generated_files/system/src/interrupt.c: 40: void INTERRUPT_Initialize(void) {
+[; ;mcc_generated_files/system/src/interrupt.c: 40: void INTERRUPT_Initialize (void)
 [v _INTERRUPT_Initialize `(v ~T0 @X0 1 ef ]
+"41
+[; ;mcc_generated_files/system/src/interrupt.c: 41: {
 {
 [e :U _INTERRUPT_Initialize ]
 [f ]
-"43
-[; ;mcc_generated_files/system/src/interrupt.c: 43:     (PIR0bits.INTF = 0);
-[e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
 "44
-[; ;mcc_generated_files/system/src/interrupt.c: 44:     (INTCONbits.INTEDG = 0);
+[; ;mcc_generated_files/system/src/interrupt.c: 44:     (PIR0bits.INTF = 0);
+[e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
+"45
+[; ;mcc_generated_files/system/src/interrupt.c: 45:     (INTCONbits.INTEDG = 0);
 [e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"46
-[; ;mcc_generated_files/system/src/interrupt.c: 46:     INT_SetInterruptHandler(INT_DefaultInterruptHandler);
-[e ( _INT_SetInterruptHandler (1 &U _INT_DefaultInterruptHandler ]
 "47
-[; ;mcc_generated_files/system/src/interrupt.c: 47:     (PIE0bits.INTE = 1);
+[; ;mcc_generated_files/system/src/interrupt.c: 47:     INT_SetInterruptHandler(INT_DefaultInterruptHandler);
+[e ( _INT_SetInterruptHandler (1 &U _INT_DefaultInterruptHandler ]
+"48
+[; ;mcc_generated_files/system/src/interrupt.c: 48:     (PIE0bits.INTE = 1);
 [e = . . _PIE0bits 0 0 -> -> 1 `i `uc ]
-"49
-[; ;mcc_generated_files/system/src/interrupt.c: 49: }
+"50
+[; ;mcc_generated_files/system/src/interrupt.c: 50: }
 [e :UE 522 ]
 }
 [v $root$_INTERRUPT_InterruptManager `(v ~T0 @X0 0 e ]
-"58
-[; ;mcc_generated_files/system/src/interrupt.c: 58: void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager(void) {
+"59
+[; ;mcc_generated_files/system/src/interrupt.c: 59: void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void)
 [v _INTERRUPT_InterruptManager `(v ~T1 @X0 1 ef ]
+"60
+[; ;mcc_generated_files/system/src/interrupt.c: 60: {
 {
 [e :U _INTERRUPT_InterruptManager ]
 [f ]
-"60
-[; ;mcc_generated_files/system/src/interrupt.c: 60:     if (PIE0bits.INTE == 1 && PIR0bits.INTF == 1) {
-[e $ ! && == -> . . _PIE0bits 0 0 `i -> 1 `i == -> . . _PIR0bits 0 0 `i -> 1 `i 524  ]
-{
-"61
-[; ;mcc_generated_files/system/src/interrupt.c: 61:         INT_ISR();
-[e ( _INT_ISR ..  ]
 "62
-[; ;mcc_generated_files/system/src/interrupt.c: 62:     } else if (INTCONbits.PEIE == 1) {
-}
-[e $U 525  ]
-[e :U 524 ]
-[e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 526  ]
-{
+[; ;mcc_generated_files/system/src/interrupt.c: 62:     if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
+[e $ ! && == -> . . _PIE0bits 0 0 `i -> 1 `i == -> . . _PIR0bits 0 0 `i -> 1 `i 524  ]
 "63
-[; ;mcc_generated_files/system/src/interrupt.c: 63:         if (PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1) {
-[e $ ! && == -> . . _PIE0bits 0 3 `i -> 1 `i == -> . . _PIR0bits 0 3 `i -> 1 `i 527  ]
+[; ;mcc_generated_files/system/src/interrupt.c: 63:     {
 {
 "64
-[; ;mcc_generated_files/system/src/interrupt.c: 64:             TMR0_ISR();
-[e ( _TMR0_ISR ..  ]
+[; ;mcc_generated_files/system/src/interrupt.c: 64:         INT_ISR();
+[e ( _INT_ISR ..  ]
 "65
-[; ;mcc_generated_files/system/src/interrupt.c: 65:         }
+[; ;mcc_generated_files/system/src/interrupt.c: 65:     }
 }
-[e $U 528  ]
+[e $U 525  ]
 "66
-[; ;mcc_generated_files/system/src/interrupt.c: 66:         else {
-[e :U 527 ]
+[; ;mcc_generated_files/system/src/interrupt.c: 66:     else if(INTCONbits.PEIE == 1)
+[e :U 524 ]
+[e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 526  ]
+"67
+[; ;mcc_generated_files/system/src/interrupt.c: 67:     {
 {
 "68
-[; ;mcc_generated_files/system/src/interrupt.c: 68:         }
-}
-[e :U 528 ]
+[; ;mcc_generated_files/system/src/interrupt.c: 68:         if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)
+[e $ ! && == -> . . _PIE0bits 0 3 `i -> 1 `i == -> . . _PIR0bits 0 3 `i -> 1 `i 527  ]
 "69
-[; ;mcc_generated_files/system/src/interrupt.c: 69:     }
-}
-[e $U 529  ]
-"70
-[; ;mcc_generated_files/system/src/interrupt.c: 70:     else {
-[e :U 526 ]
+[; ;mcc_generated_files/system/src/interrupt.c: 69:         {
 {
-"72
-[; ;mcc_generated_files/system/src/interrupt.c: 72:     }
+"70
+[; ;mcc_generated_files/system/src/interrupt.c: 70:             TMR0_ISR();
+[e ( _TMR0_ISR ..  ]
+"71
+[; ;mcc_generated_files/system/src/interrupt.c: 71:         }
 }
-[e :U 529 ]
-[e :U 525 ]
+[e $U 528  ]
+"72
+[; ;mcc_generated_files/system/src/interrupt.c: 72:         else if(PIE1bits.SSP1IE == 1 && PIR1bits.SSP1IF == 1)
+[e :U 527 ]
+[e $ ! && == -> . . _PIE1bits 0 1 `i -> 1 `i == -> . . _PIR1bits 0 1 `i -> 1 `i 529  ]
 "73
-[; ;mcc_generated_files/system/src/interrupt.c: 73: }
+[; ;mcc_generated_files/system/src/interrupt.c: 73:         {
+{
+"74
+[; ;mcc_generated_files/system/src/interrupt.c: 74:             SPI1_ISR();
+[e ( _SPI1_ISR ..  ]
+"75
+[; ;mcc_generated_files/system/src/interrupt.c: 75:         }
+}
+[e $U 530  ]
+"76
+[; ;mcc_generated_files/system/src/interrupt.c: 76:         else
+[e :U 529 ]
+"77
+[; ;mcc_generated_files/system/src/interrupt.c: 77:         {
+{
+"79
+[; ;mcc_generated_files/system/src/interrupt.c: 79:         }
+}
+[e :U 530 ]
+[e :U 528 ]
+"80
+[; ;mcc_generated_files/system/src/interrupt.c: 80:     }
+}
+[e $U 531  ]
+"81
+[; ;mcc_generated_files/system/src/interrupt.c: 81:     else
+[e :U 526 ]
+"82
+[; ;mcc_generated_files/system/src/interrupt.c: 82:     {
+{
+"84
+[; ;mcc_generated_files/system/src/interrupt.c: 84:     }
+}
+[e :U 531 ]
+[e :U 525 ]
+"85
+[; ;mcc_generated_files/system/src/interrupt.c: 85: }
 [e :UE 523 ]
 }
-"75
-[; ;mcc_generated_files/system/src/interrupt.c: 75: void INT_ISR(void) {
+"87
+[; ;mcc_generated_files/system/src/interrupt.c: 87: void INT_ISR(void)
 [v _INT_ISR `(v ~T0 @X0 1 ef ]
+"88
+[; ;mcc_generated_files/system/src/interrupt.c: 88: {
 {
 [e :U _INT_ISR ]
 [f ]
-"76
-[; ;mcc_generated_files/system/src/interrupt.c: 76:     (PIR0bits.INTF = 0);
+"89
+[; ;mcc_generated_files/system/src/interrupt.c: 89:     (PIR0bits.INTF = 0);
 [e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
-"79
-[; ;mcc_generated_files/system/src/interrupt.c: 79:     INT_CallBack();
+"92
+[; ;mcc_generated_files/system/src/interrupt.c: 92:     INT_CallBack();
 [e ( _INT_CallBack ..  ]
-"80
-[; ;mcc_generated_files/system/src/interrupt.c: 80: }
-[e :UE 530 ]
+"93
+[; ;mcc_generated_files/system/src/interrupt.c: 93: }
+[e :UE 532 ]
 }
-"82
-[; ;mcc_generated_files/system/src/interrupt.c: 82: void INT_CallBack(void) {
+"96
+[; ;mcc_generated_files/system/src/interrupt.c: 96: void INT_CallBack(void)
 [v _INT_CallBack `(v ~T0 @X0 1 ef ]
+"97
+[; ;mcc_generated_files/system/src/interrupt.c: 97: {
 {
 [e :U _INT_CallBack ]
 [f ]
-"84
-[; ;mcc_generated_files/system/src/interrupt.c: 84:     if (INT_InterruptHandler) {
-[e $ ! != _INT_InterruptHandler -> -> 0 `i `*F3783 532  ]
+"99
+[; ;mcc_generated_files/system/src/interrupt.c: 99:     if(INT_InterruptHandler)
+[e $ ! != _INT_InterruptHandler -> -> 0 `i `*F3788 534  ]
+"100
+[; ;mcc_generated_files/system/src/interrupt.c: 100:     {
 {
-"85
-[; ;mcc_generated_files/system/src/interrupt.c: 85:         INT_InterruptHandler();
+"101
+[; ;mcc_generated_files/system/src/interrupt.c: 101:         INT_InterruptHandler();
 [e ( *U _INT_InterruptHandler ..  ]
-"86
-[; ;mcc_generated_files/system/src/interrupt.c: 86:     }
+"102
+[; ;mcc_generated_files/system/src/interrupt.c: 102:     }
 }
-[e :U 532 ]
-"87
-[; ;mcc_generated_files/system/src/interrupt.c: 87: }
-[e :UE 531 ]
-}
-"89
-[; ;mcc_generated_files/system/src/interrupt.c: 89: void INT_SetInterruptHandler(void (* InterruptHandler)(void)) {
-[v _INT_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F3785 ]
-{
-[e :U _INT_SetInterruptHandler ]
-[v _InterruptHandler `*F3787 ~T0 @X0 1 r1 ]
-[f ]
-"90
-[; ;mcc_generated_files/system/src/interrupt.c: 90:     INT_InterruptHandler = InterruptHandler;
-[e = _INT_InterruptHandler _InterruptHandler ]
-"91
-[; ;mcc_generated_files/system/src/interrupt.c: 91: }
+[e :U 534 ]
+"103
+[; ;mcc_generated_files/system/src/interrupt.c: 103: }
 [e :UE 533 ]
 }
-"93
-[; ;mcc_generated_files/system/src/interrupt.c: 93: void INT_DefaultInterruptHandler(void) {
+"105
+[; ;mcc_generated_files/system/src/interrupt.c: 105: void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
+[v _INT_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F3790 ]
+{
+[e :U _INT_SetInterruptHandler ]
+[v _InterruptHandler `*F3792 ~T0 @X0 1 r1 ]
+[f ]
+"106
+[; ;mcc_generated_files/system/src/interrupt.c: 106:     INT_InterruptHandler = InterruptHandler;
+[e = _INT_InterruptHandler _InterruptHandler ]
+"107
+[; ;mcc_generated_files/system/src/interrupt.c: 107: }
+[e :UE 535 ]
+}
+"109
+[; ;mcc_generated_files/system/src/interrupt.c: 109: void INT_DefaultInterruptHandler(void){
 [v _INT_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
 {
 [e :U _INT_DefaultInterruptHandler ]
 [f ]
-"96
-[; ;mcc_generated_files/system/src/interrupt.c: 96:     pushed = 1;
+"112
+[; ;mcc_generated_files/system/src/interrupt.c: 112:     pushed = 1;
 [e = _pushed -> -> 1 `i `a ]
-"97
-[; ;mcc_generated_files/system/src/interrupt.c: 97: }
-[e :UE 534 ]
+"113
+[; ;mcc_generated_files/system/src/interrupt.c: 113: }
+[e :UE 536 ]
 }

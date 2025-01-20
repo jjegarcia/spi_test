@@ -6289,7 +6289,7 @@ struct SPI_INTERFACE
 
 
 extern const struct SPI_INTERFACE SPI1_Client;
-# 115 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 120 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 typedef enum {
     CLIENT_CONFIG_M0,
     CLIENT_CONFIG_M1,
@@ -6313,7 +6313,7 @@ void SPI1_Initialize(void);
 
 
 void SPI1_Deinitialize(void);
-# 147 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 152 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
@@ -6323,11 +6323,11 @@ _Bool SPI1_Open(uint8_t spiConfigIndex);
 
 
 void SPI1_Close(void);
-# 164 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
-void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
-# 173 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
-void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
-# 182 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 169 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
+# 178 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
+# 187 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
@@ -6337,7 +6337,7 @@ void SPI1_BufferRead(void *bufferData, size_t bufferSize);
 
 
 uint8_t SPI1_ByteExchange(uint8_t byteData);
-# 200 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 205 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 void SPI1_ByteWrite(uint8_t byteData);
 
 
@@ -6347,10 +6347,26 @@ void SPI1_ByteWrite(uint8_t byteData);
 
 
 uint8_t SPI1_ByteRead(void);
-# 217 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 222 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 _Bool SPI1_IsRxReady(void);
-# 226 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
+# 231 "mcc_generated_files/system/src/../../system/../spi/mssp1.h"
 _Bool SPI1_IsTxReady(void);
+
+
+
+
+
+
+
+void SPI1_RxCompleteCallbackRegister(void (*CallbackHandler)(void));
+
+
+
+
+
+
+
+void SPI1_ISR(void);
 # 44 "mcc_generated_files/system/src/../../system/system.h" 2
 
 # 1 "mcc_generated_files/system/src/../../system/../system/interrupt.h" 1
@@ -6476,7 +6492,8 @@ void SYSTEM_Initialize(void);
 
 void (*INT_InterruptHandler)(void);
 
-void INTERRUPT_Initialize(void) {
+void INTERRUPT_Initialize (void)
+{
 
 
     (PIR0bits.INTF = 0);
@@ -6486,43 +6503,58 @@ void INTERRUPT_Initialize(void) {
     (PIE0bits.INTE = 1);
 
 }
-# 58 "mcc_generated_files/system/src/interrupt.c"
-void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager(void) {
+# 59 "mcc_generated_files/system/src/interrupt.c"
+void __attribute__((picinterrupt(("")))) INTERRUPT_InterruptManager (void)
+{
 
-    if (PIE0bits.INTE == 1 && PIR0bits.INTF == 1) {
+    if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
+    {
         INT_ISR();
-    } else if (INTCONbits.PEIE == 1) {
-        if (PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1) {
+    }
+    else if(INTCONbits.PEIE == 1)
+    {
+        if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)
+        {
             TMR0_ISR();
         }
-        else {
+        else if(PIE1bits.SSP1IE == 1 && PIR1bits.SSP1IF == 1)
+        {
+            SPI1_ISR();
+        }
+        else
+        {
 
         }
     }
-    else {
+    else
+    {
 
     }
 }
 
-void INT_ISR(void) {
+void INT_ISR(void)
+{
     (PIR0bits.INTF = 0);
 
 
     INT_CallBack();
 }
 
-void INT_CallBack(void) {
 
-    if (INT_InterruptHandler) {
+void INT_CallBack(void)
+{
+
+    if(INT_InterruptHandler)
+    {
         INT_InterruptHandler();
     }
 }
 
-void INT_SetInterruptHandler(void (* InterruptHandler)(void)) {
+void INT_SetInterruptHandler(void (* InterruptHandler)(void)){
     INT_InterruptHandler = InterruptHandler;
 }
 
-void INT_DefaultInterruptHandler(void) {
+void INT_DefaultInterruptHandler(void){
 
 
     pushed = 1;

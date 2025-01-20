@@ -31,17 +31,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "763
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 763: extern volatile LATAbits_t LATAbits __attribute__((address(0x018)));
 [v _LATAbits `VS44 ~T0 @X0 0 e@24 ]
-"147 ./mcc_generated_files/system/../spi/mssp1.h
-[; ;./mcc_generated_files/system/../spi/mssp1.h: 147: _Bool SPI1_Open(uint8_t spiConfigIndex);
+"152 ./mcc_generated_files/system/../spi/mssp1.h
+[; ;./mcc_generated_files/system/../spi/mssp1.h: 152: _Bool SPI1_Open(uint8_t spiConfigIndex);
 [v _SPI1_Open `(a ~T0 @X0 0 ef1`uc ]
-"226
-[; ;./mcc_generated_files/system/../spi/mssp1.h: 226: _Bool SPI1_IsTxReady(void);
+"231
+[; ;./mcc_generated_files/system/../spi/mssp1.h: 231: _Bool SPI1_IsTxReady(void);
 [v _SPI1_IsTxReady `(a ~T0 @X0 0 ef ]
-"173
-[; ;./mcc_generated_files/system/../spi/mssp1.h: 173: void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
-[v _SPI1_BufferWrite `(v ~T0 @X0 0 ef2`*uc`ui ]
-"155
-[; ;./mcc_generated_files/system/../spi/mssp1.h: 155: void SPI1_Close(void);
+"178
+[; ;./mcc_generated_files/system/../spi/mssp1.h: 178: void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
+[v _SPI1_BufferWrite `(v ~T0 @X0 0 ef2`*v`ui ]
+"160
+[; ;./mcc_generated_files/system/../spi/mssp1.h: 160: void SPI1_Close(void);
 [v _SPI1_Close `(v ~T0 @X0 0 ef ]
 "110 C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h
 [; ;C:/Users/jjega/.mchp_packs/Microchip/PIC16F1xxxx_DFP/1.25.389/xc8\pic\include\proc\pic16f15244.h: 110: __asm("INDF0 equ 00h");
@@ -635,8 +635,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "57
 [; ;main.c: 57:     (INTCONbits.PEIE = 1);
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-[v F3781 `uc ~T0 @X0 -> 4 `i s ]
-[i F3781
+[v F3786 `uc ~T0 @X0 -> 4 `i s ]
+[i F3786
 :U ..
 "61
 [; ;main.c: 61:     uint8_t spiData[] = {
@@ -647,7 +647,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _spiData `uc ~T0 @X0 -> 4 `i a ]
-[e = _spiData F3781 ]
+[e = _spiData F3786 ]
 "69
 [; ;main.c: 69:     while (1) {
 [e :U 524 ]
@@ -726,7 +726,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 532 ]
 "93
 [; ;main.c: 93:         SPI1_BufferWrite(data, 4);
-[e ( _SPI1_BufferWrite (2 , _data -> -> 4 `i `ui ]
+[e ( _SPI1_BufferWrite (2 , -> _data `*v -> -> 4 `i `ui ]
 "94
 [; ;main.c: 94:         SPI1_Close();
 [e ( _SPI1_Close ..  ]

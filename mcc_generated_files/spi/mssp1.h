@@ -104,6 +104,11 @@ extern const struct SPI_INTERFACE SPI1_Client;
  * @brief    This macro defines the Custom Name for \ref SPI1_IsTxReady API
  */
 #define SPI1_Client_IsTxReady SPI1_IsTxReady
+/**
+ * @ingroup  spi1
+ * @brief    This macro defines the Custom Name for \ref SPI1_RxCompleteCallbackRegister API
+ */
+#define SPI1_Client_RxCompleteCallbackRegister SPI1_RxCompleteCallbackRegister
 
 /**
  * @ingroup spi1
@@ -161,7 +166,7 @@ void SPI1_Close(void);
  * @param [in] bufferSize Size of the data in bytes
  * @return None.
  */
-void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
+void SPI1_BufferExchange(void *bufferData, size_t bufferSize);
 
 /**
  * @ingroup spi1
@@ -170,7 +175,7 @@ void SPI1_BufferExchange(uint8_t *bufferData, size_t bufferSize);
  * @param [in] bufferSize Size of the data in bytes
  * @return None.
  */
-void SPI1_BufferWrite(uint8_t *bufferData, size_t bufferSize);
+void SPI1_BufferWrite(void *bufferData, size_t bufferSize);
 
 /**
  * @ingroup spi1
@@ -224,5 +229,21 @@ bool SPI1_IsRxReady(void);
  * @retval False SPI1 module is not ready to write data
  */
 bool SPI1_IsTxReady(void);
+
+/**
+ * @ingroup spi1
+ * @brief Sets the callback function to be executed at the completion of data transfer in Interrupt mode.
+ * @param Pointer to the function to be executed
+ * @return None.
+ */
+void SPI1_RxCompleteCallbackRegister(void (*CallbackHandler)(void));
+
+/**
+ * @ingroup spi1
+ * @brief Interrupt Service Routine (ISR) for the SPI1 module.
+ * @param None.
+ * @return None.
+ */
+void SPI1_ISR(void);
 
 #endif //MSSP1_H
